@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { LANav, LAChapterBar } from './LANav'
+import { LATopBar, LAChapterBar } from './LANav'
 
 /* ========================================================
    0. HOUSE FEATURE VECTOR VISUALIZER
@@ -708,11 +708,10 @@ function BasisDimensionVisualizer() {
    ======================================================== */
 export default function LinearAlgebraPage() {
   return (
-    <div className="la-layout">
-      <LANav currentPage="la-ch01" />
+    <div className="la-embed-page">
+      <LATopBar currentPage="la-ch01" />
 
-      <main className="la-main">
-        {/* HERO SECTION */}
+      {/* HERO SECTION */}
         <section className="la-hero">
           <div className="la-hero-badge">
             <i className="fa-solid fa-compass-drafting" /> CH 01: Data as a Vector
@@ -752,7 +751,6 @@ export default function LinearAlgebraPage() {
         </section>
 
         <LAChapterBar currentPage="la-ch01" />
-      </main>
     </div>
   )
 }

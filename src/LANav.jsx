@@ -14,28 +14,28 @@ const LA_CHAPTERS = [
   { id: 'la-ch05', label: 'CH 05 — Orthogonality', icon: 'fa-solid fa-ruler-combined', short: 'CH 05' },
 ]
 
-export function LANav({ currentPage }) {
-  const navigate = (id) => { window.location.hash = id }
+export function LATopBar({ currentPage }) {
+  const navigate = (id) => { window.location.href = `https://linear-algebra-110.netlify.app/#${id}` }
 
   return (
-    <nav className="la-nav">
+    <nav className="la-topbar">
       {/* Logo / Back to portfolio */}
-      <div className="la-nav-logo" onClick={() => { window.location.hash = '' }}>
-        <span className="la-nav-logo-kh">K<span>H</span></span>
-        <span className="la-nav-logo-tag">← Portfolio</span>
+      <div className="la-topbar-logo" onClick={() => { window.location.href = 'https://linear-algebra-110.netlify.app/' }}>
+        <span className="la-topbar-logo-kh">K<span>H</span></span>
+        <span className="la-topbar-logo-tag">← Portfolio</span>
       </div>
 
       {/* Chapter links */}
-      <ul className="la-nav-links">
+      <ul className="la-topbar-links">
         {LA_CHAPTERS.map(ch => (
           <li key={ch.id}>
             <button
-              className={`la-nav-link ${currentPage === ch.id ? 'la-nav-link-active' : ''}`}
+              className={`la-topbar-link ${currentPage === ch.id ? 'la-topbar-link-active' : ''}`}
               onClick={() => navigate(ch.id)}
             >
               <i className={ch.icon} />
-              <span className="la-nav-link-short">{ch.short}</span>
-              <span className="la-nav-link-full">{ch.label}</span>
+              <span className="la-topbar-link-short">{ch.short}</span>
+              <span className="la-topbar-link-full">{ch.label}</span>
             </button>
           </li>
         ))}
@@ -54,7 +54,7 @@ export function LAChapterBar({ currentPage }) {
     <div className="la-chapter-bar">
       <div className="la-chapter-bar-inner">
         {prev ? (
-          <button className="la-chapter-nav-btn" onClick={() => { window.location.hash = prev.id }}>
+          <button className="la-chapter-nav-btn" onClick={() => { window.location.href = `https://linear-algebra-110.netlify.app/#${prev.id}` }}>
             <i className="fa-solid fa-arrow-left" /> {prev.short}
           </button>
         ) : <div />}
@@ -64,14 +64,14 @@ export function LAChapterBar({ currentPage }) {
             <div
               key={ch.id}
               className={`la-progress-dot ${ch.id === currentPage ? 'active' : ''} ${i < currentIdx ? 'done' : ''}`}
-              onClick={() => { window.location.hash = ch.id }}
+              onClick={() => { window.location.href = `https://linear-algebra-110.netlify.app/#${ch.id}` }}
               title={ch.label}
             />
           ))}
         </div>
 
         {next ? (
-          <button className="la-chapter-nav-btn" onClick={() => { window.location.hash = next.id }}>
+          <button className="la-chapter-nav-btn" onClick={() => { window.location.href = `https://linear-algebra-110.netlify.app/#${next.id}` }}>
             {next.short} <i className="fa-solid fa-arrow-right" />
           </button>
         ) : (
@@ -85,4 +85,4 @@ export function LAChapterBar({ currentPage }) {
 }
 
 export { LA_CHAPTERS }
-export default LANav
+export default LATopBar

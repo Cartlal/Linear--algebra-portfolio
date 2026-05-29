@@ -1,5 +1,5 @@
 import React from 'react'
-import { LANav, LAChapterBar } from './LANav'
+import { LATopBar, LAChapterBar } from './LANav'
 
 /* ============================================================
    CH 03 — Solving Systems of Linear Equations
@@ -40,11 +40,10 @@ const KEY_CONCEPTS = [
 
 export default function Ch03Page() {
   return (
-    <div className="la-layout">
-      <LANav currentPage="la-ch03" />
+    <div className="la-embed-page">
+      <LATopBar currentPage="la-ch03" />
 
-      <main className="la-main">
-        {/* HERO */}
+      {/* HERO */}
         <section className="la-hero" style={{ background: 'var(--blue)', color: 'var(--white)' }}>
           <div className="la-hero-badge" style={{ background: 'var(--white)', color: 'var(--blue)' }}>
             <i className="fa-solid fa-equals" /> CH 03 · Solving Systems of Linear Equations
@@ -100,7 +99,6 @@ export default function Ch03Page() {
         </section>
 
         <LAChapterBar currentPage="la-ch03" />
-      </main>
     </div>
   )
 }
