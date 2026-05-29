@@ -36,6 +36,18 @@ const OVERVIEW_CARDS = [
     icon: 'fa-solid fa-ruler-combined', hash: 'orthogonality',
     color: '#00C853', textColor: '#0a0a0a',
   },
+  {
+    num: 'CH 06', title: 'Eigenvalues & Eigenvectors',
+    desc: 'Invariant directions, the characteristic equation, diagonalization, and PageRank.',
+    icon: 'fa-solid fa-bolt', hash: 'eigenvalues-and-eigenvectors',
+    color: '#ff7b54', textColor: '#0a0a0a',
+  },
+  {
+    num: 'CH 07', title: 'Singular Value Decomposition',
+    desc: 'SVD, pseudoinverse, data compression, and recommendation systems.',
+    icon: 'fa-solid fa-layer-group', hash: 'singular-value-decomposition',
+    color: '#00e5ff', textColor: '#0a0a0a',
+  },
 ]
 
 const CSE_USES = [

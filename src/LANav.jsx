@@ -12,6 +12,8 @@ const LA_CHAPTERS = [
   { id: 'la-ch03', label: 'CH 03 — Solving Linear Systems', icon: 'fa-solid fa-equals', short: 'CH 03' },
   { id: 'la-ch04', label: 'CH 04 — Vector Spaces', icon: 'fa-solid fa-cubes', short: 'CH 04' },
   { id: 'la-ch05', label: 'CH 05 — Orthogonality', icon: 'fa-solid fa-ruler-combined', short: 'CH 05' },
+  { id: 'la-ch06', label: 'CH 06 — Eigenvalues & Eigenvectors', icon: 'fa-solid fa-bolt', short: 'CH 06' },
+  { id: 'la-ch07', label: 'CH 07 — Singular Value Decomposition', icon: 'fa-solid fa-layer-group', short: 'CH 07' },
 ]
 
 export function LATopBar({ currentPage }) {

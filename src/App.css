@@ -415,8 +415,7 @@
   cursor: default;
 }
 .skill-card:last-child { border-right: none; }
-.skill-card:hover { background: var(--black); color: var(--yellow); }
-.skill-card:hover .skill-icon { background: var(--yellow); color: var(--black); }
+
 .skill-icon {
   width: 52px; height: 52px;
   background: var(--black);
