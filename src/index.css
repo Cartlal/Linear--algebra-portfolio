@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #f5f0e8;
+  --yellow: #FFD600;
+  --red: #FF3B3B;
+  --blue: #1A1AFF;
+  --green: #00C853;
+  --border: 3px solid #0a0a0a;
+  --shadow: 6px 6px 0px #0a0a0a;
+  --shadow-lg: 10px 10px 0px #0a0a0a;
+  --font-main: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+::selection { background: var(--yellow); color: var(--black); }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--white); border-left: 2px solid var(--black); }
+::-webkit-scrollbar-thumb { background: var(--black); }
+
+a { text-decoration: none; color: inherit; }
