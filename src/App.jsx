@@ -918,18 +918,21 @@ export default function App() {
   const [view, setView] = useState('portfolio')
 
   useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace('#', '')
-      const LA_VIEWS = ['la-home', 'la-ch01', 'la-ch02', 'la-ch03', 'la-ch04', 'la-ch05', 'linear-algebra']
-      if (LA_VIEWS.includes(hash)) {
-        setView(hash === 'linear-algebra' ? 'la-ch01' : hash)
+    const handlePath = () => {
+      // Remove leading slash, e.g. "/data-as-vectors" -> "data-as-vectors"
+      const path = window.location.pathname.replace(/^\/+/, '')
+      
+      const LA_VIEWS = ['la-home', 'data-as-vectors', 'matrices-as-system-operators', 'solving-linear-systems', 'vector-spaces', 'orthogonality']
+      
+      if (LA_VIEWS.includes(path)) {
+        setView(path)
       } else {
         setView('portfolio')
       }
     }
-    handleHash()
-    window.addEventListener('hashchange', handleHash)
-    return () => window.removeEventListener('hashchange', handleHash)
+    handlePath()
+    window.addEventListener('popstate', handlePath)
+    return () => window.removeEventListener('popstate', handlePath)
   }, [])
 
   /* LA Section — each chapter is a full self-contained page with its own sidebar nav */

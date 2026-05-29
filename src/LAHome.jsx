@@ -230,7 +230,10 @@ export default function LAHomePage() {
               <div
                 key={i}
                 className="la-chapter-overview-card"
-                onClick={() => { window.location.hash = ch.hash }}
+                onClick={() => {
+                  window.history.pushState({}, '', '/' + ch.hash)
+                  window.dispatchEvent(new Event('popstate'))
+                }}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="la-chov-left" style={{ background: ch.color, color: ch.textColor }}>
