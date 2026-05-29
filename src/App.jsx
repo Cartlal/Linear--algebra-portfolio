@@ -297,22 +297,28 @@ function Hero() {
 
         <div className="hero-stats">
           {[
-            { num: '21+', label: 'Repositories' },
-            { num: '1K+', label: 'Contributions' },
-            { num: 'TOP', label: '25 — Code Bharat' },
-            { num: 'IIT', label: 'Dharwad Recognized' },
-          ].map((s, i) => (
-            <div
+            { icon: 'fa-solid fa-envelope', title: 'Email', value: 'karthik.hirenarti@gmail.com', href: 'mailto:karthik.hirenarti@gmail.com' },
+            { icon: 'fa-solid fa-phone', title: 'Phone', value: '+91 7204404872', href: 'tel:+917204404872' },
+            { icon: 'fa-brands fa-linkedin', title: 'LinkedIn', value: 'karthikhirenarti', href: 'https://www.linkedin.com/in/karthikhirenarti/' },
+            { icon: 'fa-brands fa-github', title: 'GitHub', value: 'Cartlal', href: 'https://github.com/Cartlal' },
+          ].map((c, i) => (
+            <a
               key={i}
-              className="stat-box"
+              href={c.href}
+              target={c.href.startsWith('http') ? '_blank' : undefined}
+              rel="noreferrer"
+              className="stat-box hero-contact-box"
               style={{
                 borderLeft: i % 2 === 1 ? 'var(--border)' : undefined,
                 borderTop: i >= 2 ? 'var(--border)' : undefined,
               }}
             >
-              <div className="stat-number">{s.num}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
+              <div className="stat-number">
+                <i className={c.icon} />
+                {c.title}
+              </div>
+              <div className="stat-label">{c.value}</div>
+            </a>
           ))}
         </div>
       </div>
