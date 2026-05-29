@@ -1,5 +1,4 @@
 import React from 'react'
-import { LATopBar, LAChapterBar } from './LANav'
 
 /* ============================================================
    CH 04 — Vector Spaces: Degrees of Freedom
@@ -41,7 +40,6 @@ const KEY_CONCEPTS = [
 export default function Ch04Page() {
   return (
     <div className="la-embed-page">
-      <LATopBar currentPage="la-ch04" />
 
       {/* HERO */}
         <section className="la-hero" style={{ background: 'var(--red)', color: 'var(--white)' }}>
@@ -98,7 +96,6 @@ export default function Ch04Page() {
           </div>
         </section>
 
-        <LAChapterBar currentPage="la-ch04" />
     </div>
   )
 }

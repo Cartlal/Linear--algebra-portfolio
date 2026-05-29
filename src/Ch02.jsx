@@ -1,5 +1,4 @@
 import React from 'react'
-import { LATopBar, LAChapterBar } from './LANav'
 
 /* ============================================================
    CH 02 — Matrices as System Operators
@@ -42,7 +41,6 @@ const MATRIX_KEY_CONCEPTS = [
 export default function Ch02Page() {
   return (
     <div className="la-embed-page">
-      <LATopBar currentPage="la-ch02" />
 
       {/* HERO */}
         <section className="la-hero" style={{ background: 'var(--black)', color: 'var(--white)' }}>
@@ -99,7 +97,6 @@ export default function Ch02Page() {
           </div>
         </section>
 
-        <LAChapterBar currentPage="la-ch02" />
     </div>
   )
 }

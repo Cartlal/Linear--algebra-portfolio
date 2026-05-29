@@ -956,7 +956,6 @@ export default function App() {
 
   return (
     <>
-      <Nav />
       <Hero />
       <Ticker />
       <About />

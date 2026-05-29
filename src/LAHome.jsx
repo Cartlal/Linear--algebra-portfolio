@@ -1,5 +1,4 @@
 import React from 'react'
-import { LATopBar, LAChapterBar } from './LANav'
 
 /* ============================================================
    LA HOME — "About Linear Algebra"
@@ -50,7 +49,6 @@ const CSE_USES = [
 export default function LAHomePage() {
   return (
     <div className="la-embed-page">
-      <LATopBar currentPage="la-home" />
 
       {/* ── HERO ── */}
       <section className="laemb-hero">
@@ -252,7 +250,6 @@ export default function LAHomePage() {
         </div>
       </section>
 
-      <LAChapterBar currentPage="la-home" />
     </div>
   )
 }

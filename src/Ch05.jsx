@@ -1,5 +1,4 @@
 import React from 'react'
-import { LATopBar, LAChapterBar } from './LANav'
 
 /* ============================================================
    CH 05 — Orthogonality
@@ -41,7 +40,6 @@ const KEY_CONCEPTS = [
 export default function Ch05Page() {
   return (
     <div className="la-embed-page">
-      <LATopBar currentPage="la-ch05" />
 
       {/* HERO */}
         <section className="la-hero" style={{ background: 'var(--green)', color: 'var(--black)' }}>
@@ -98,7 +96,6 @@ export default function Ch05Page() {
           </div>
         </section>
 
-        <LAChapterBar currentPage="la-ch05" />
     </div>
   )
 }
