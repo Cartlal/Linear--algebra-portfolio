@@ -726,7 +726,7 @@ function Achievements() {
           <div className="ach-icon">🥇</div>
           <div>
             <div className="ach-title">Winner — DTSI Project Expo</div>
-            <div className="ach-desc">Won first place at the DTSI Project Exhibition, showcasing innovative technical projects and real-world solutions to industry professionals.</div>
+            <div className="ach-desc">Won first place at the DTSI Project Exhibition for developing an innovative <strong>Smart Cradle</strong>, showcasing real-world hardware solutions to industry professionals.</div>
           </div>
         </FadeIn>
         <FadeIn className="ach-card">
