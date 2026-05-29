@@ -1454,6 +1454,104 @@
   color: var(--black) !important;
 }
 
+/* Subcard styling for chapter elements */
+.la-subcard {
+  border: var(--border);
+  box-shadow: var(--shadow-lg);
+  background: var(--white);
+  margin-top: 3rem;
+  overflow: hidden;
+}
+.subcard-header {
+  background: var(--black);
+  color: var(--yellow);
+  padding: 1rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: var(--border);
+}
+.subcard-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  background: var(--white);
+}
+.subcard-controls {
+  padding: 2.5rem;
+  border-right: var(--border);
+}
+.subcard-display-right {
+  padding: 2.5rem;
+  background: #ede8dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Feature vector boxes */
+.vector-display-box {
+  background: var(--black);
+  color: var(--white);
+  padding: 1.2rem;
+  border: 2px solid var(--black);
+  font-family: var(--font-mono);
+  margin: 1.5rem 0;
+  box-shadow: 4px 4px 0 var(--blue);
+}
+.vector-display-box code {
+  display: block;
+  opacity: 0.6;
+  font-size: 0.72rem;
+  margin-bottom: 5px;
+}
+.vector-brackets {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Inputs and Sliders */
+.visualizer-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.slider-group label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.slider-group input[type="range"] {
+  accent-color: var(--black);
+  cursor: pointer;
+}
+
+/* House graphics */
+.house-svg-wrapper {
+  transition: transform 0.2s ease;
+}
+.house-badge {
+  margin-top: 15px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  letter-spacing: 1px;
+}
+
+/* Swatches */
+.color-span-swatch {
+  transition: background-color 0.15s ease;
+}
+
 /* ============================
    RESPONSIVE
 ============================ */
@@ -1496,4 +1594,9 @@
   .la-cs-grid { grid-template-columns: 1fr; }
   .la-app-card { border-right: none; border-bottom: var(--border); padding: 2.5rem 2rem; }
   .la-app-card:last-child { border-bottom: none; }
+
+  /* Subcard Responsive styling */
+  .subcard-grid { grid-template-columns: 1fr; }
+  .subcard-controls { border-right: none; border-bottom: var(--border); padding: 2rem; }
+  .subcard-display-right { padding: 2rem; }
 }
