@@ -414,7 +414,7 @@ export default function Ch02Page() {
             <i className="fa-solid fa-table-cells" /> CH 02 · Matrices as System Operators
           </div>
           <h1 className="la-hero-title">
-            THE MACHINES OF<br/><span style={{ color: 'var(--yellow)' }}>COMPUTATION</span>
+            MATRICES AS<br/><span style={{ color: 'var(--yellow)' }}>SYSTEM OPERATORS</span>
           </h1>
           <p className="la-hero-sub" style={{ borderColor: 'var(--yellow)' }}>
             Linear transformations, pipelines, and the machines of computation.

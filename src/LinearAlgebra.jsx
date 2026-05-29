@@ -715,8 +715,7 @@ export default function LinearAlgebraPage() {
             <i className="fa-solid fa-compass-drafting" /> CH 01: Data as a Vector
           </div>
           <h1 className="la-hero-title">
-            DATA AS A <br />
-            <span className="la-highlight">VECTOR</span>
+            DATA AS<br/><span style={{ color: 'var(--yellow)' }}>VECTORS</span>
           </h1>
           <p className="la-hero-sub">
             Structured representations of data and basic metrics. Explore how computer science converts real-world entities into vector coordinates to analyze similarity, dimensions, and spans.
