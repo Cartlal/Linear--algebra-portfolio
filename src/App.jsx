@@ -692,7 +692,7 @@ function Github() {
           </FadeIn>
         ))}
       </div>
-
+    </section>
   )
 }
 
