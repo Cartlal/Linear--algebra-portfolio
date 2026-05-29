@@ -64,7 +64,7 @@ export default function LabReportPage() {
               title="Final Presentation (PPTX)"
               desc="The final presentation slides summarizing key linear algebra concepts, visualizations, and project outcomes."
               color="var(--yellow)"
-              embedUrl="https://docs.google.com/presentation/d/16d3568bgmoyDesedazwYEUm0jNWpgZeX/embed?start=false&loop=false&delayms=3000"
+              embedUrl="https://docs.google.com/presentation/d/16d3568bgmoyDesedazwYEUm0jNWpgZeX/preview"
             />
           </div>
 
