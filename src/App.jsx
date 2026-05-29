@@ -140,6 +140,20 @@ const EXPERIENCE = [
     ],
   },
   {
+    role: 'Club Member',
+    event: 'Technical & Coding Club',
+    org: 'ArcStack KLE Tech',
+    loc: 'Belagavi, India',
+    period: '2025 — Present',
+    color: 'var(--blue)',
+    textColor: 'var(--white)',
+    points: [
+      'Active member of ArcStack, the official technical and coding club of KLE Tech',
+      'Engaging in regular competitive programming challenges, codathons, and hackathons',
+      'Collaborating with fellow club members on development projects and learning technical concepts',
+    ],
+  },
+  {
     role: 'Technology Head',
     event: 'School Inter-College Event',
     org: 'KLS Public School',
