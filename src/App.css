@@ -67,7 +67,6 @@
 ============================ */
 .hero {
   min-height: 100vh;
-  padding-top: 60px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: var(--border);
