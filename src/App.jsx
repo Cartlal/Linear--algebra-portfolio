@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import karthikPhoto from './assets/karthik photo.jpeg'
-import LinearAlgebraPage from './LinearAlgebra'
+import LinearAlgebraPage from './DataAsVectors'
 import LAHomePage from './LAHome'
-import Ch02Page from './Ch02'
-import Ch03Page from './Ch03'
-import Ch04Page from './Ch04'
-import Ch05Page from './Ch05'
+import Ch02Page from './MatricesAsSystemOperators'
+import Ch03Page from './SolvingLinearSystems'
+import Ch04Page from './VectorSpaces'
+import Ch05Page from './Orthogonality'
 
 /* ──────────────────────────────
    DATA
@@ -935,11 +935,11 @@ export default function App() {
   /* LA Section — each chapter is a full self-contained page with its own sidebar nav */
   const LA_PAGES = {
     'la-home': <LAHomePage />,
-    'la-ch01': <LinearAlgebraPage />,
-    'la-ch02': <Ch02Page />,
-    'la-ch03': <Ch03Page />,
-    'la-ch04': <Ch04Page />,
-    'la-ch05': <Ch05Page />,
+    'data-as-vectors': <LinearAlgebraPage />,
+    'matrices-as-system-operators': <Ch02Page />,
+    'solving-linear-systems': <Ch03Page />,
+    'vector-spaces': <Ch04Page />,
+    'orthogonality': <Ch05Page />,
   }
 
   if (LA_PAGES[view]) {

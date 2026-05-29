@@ -8,11 +8,8 @@ import React, { useState, useEffect, useRef } from 'react'
 function VectorSpaceWidget() {
   const [scalar, setScalar] = useState(1)
   
-  // Example: {(x,y,0) | x>=0, y>=0}
-  // Vector v = (2, 2, 0)
   const v = [2, 2, 0]
   const scaledV = [v[0]*scalar, v[1]*scalar, v[2]*scalar]
-  
   const inSet = scaledV[0] >= 0 && scaledV[1] >= 0
   
   return (
@@ -23,36 +20,47 @@ function VectorSpaceWidget() {
       </div>
       <div className="subcard-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem' }}>
         
-        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1, border: '2px solid black', padding: '1rem', background: 'var(--white)' }}>
-            <strong>Valid Subspace:</strong> A line through the origin in 2D space.
-            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem' }}>
-              <li>✅ Contains (0,0)</li>
-              <li>✅ u + v stays on the line</li>
-              <li>✅ c * v stays on the line</li>
-            </ul>
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'stretch' }}>
+          
+          {/* Valid Subspace Box */}
+          <div style={{ flex: 1, border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--white)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ fontSize: '1.1rem' }}>
+              <strong>Valid Subspace:</strong><br/>
+              A line through the origin in 2D space.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: 'auto' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> Contains (0,0)</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> u + v stays on the line</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> c * v stays on the line</div>
+            </div>
           </div>
           
-          <div style={{ flex: 1, border: `3px solid ${inSet ? 'var(--black)' : 'var(--red)'}`, padding: '1rem', background: inSet ? 'var(--white)' : '#ffe6e6' }}>
-            <strong>Counter-Example:</strong> First Quadrant only `(x≥0, y≥0)`
-            <ul style={{ paddingLeft: '1.5rem', marginTop: '0.5rem' }}>
-              <li>✅ Contains (0,0)</li>
-              <li>✅ u + v stays in First Quadrant</li>
-              <li style={{ color: inSet ? 'black' : 'red', fontWeight: inSet ? 'normal' : 'bold' }}>
-                {inSet ? '❓ c * v ... let\'s test it' : '❌ Escaped the subset! Scaling by negative failed.'}
-              </li>
-            </ul>
+          {/* Counter-Example Box */}
+          <div style={{ flex: 1, border: `3px solid ${inSet ? 'var(--black)' : 'var(--red)'}`, padding: '1.5rem', background: inSet ? 'var(--white)' : '#ffe6e6', display: 'flex', flexDirection: 'column', gap: '1rem', transition: 'all 0.2s' }}>
+            <div style={{ fontSize: '1.1rem' }}>
+              <strong>Counter-Example:</strong><br/>
+              First Quadrant only {'{ (x,y) | x≥0, y≥0 }'}
+            </div>
             
-            <div style={{ marginTop: '1.5rem' }}>
-              <label style={{ fontWeight: 'bold' }}>Scale Vector v(2,2) by c = {scalar.toFixed(1)}</label>
-              <input type="range" min="-2" max="2" step="0.1" value={scalar} onChange={e=>setScalar(Number(e.target.value))} style={{ width: '100%', marginTop: '0.5rem' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> Contains (0,0)</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> u + v stays in First Quadrant</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: inSet ? 'var(--black)' : 'var(--red)', fontWeight: inSet ? 'normal' : 'bold' }}>
+                <span>{inSet ? '❓' : '❌'}</span> {inSet ? "c * v ... let's test it" : "Escaped the subset! Scaling failed."}
+              </div>
+            </div>
+            
+            <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '2px dashed rgba(0,0,0,0.2)' }}>
+              <label style={{ fontWeight: 'bold', display: 'block', marginBottom: '0.5rem' }}>Scale Vector v(2,2) by c = {scalar.toFixed(1)}</label>
+              <input type="range" min="-2" max="2" step="0.1" value={scalar} onChange={e=>setScalar(Number(e.target.value))} style={{ width: '100%', cursor: 'pointer' }} />
               
-              <div style={{ marginTop: '1rem', fontFamily: 'var(--font-mono)', fontSize: '1.2rem' }}>
-                Result = [{scaledV[0].toFixed(1)}, {scaledV[1].toFixed(1)}] 
-                {inSet ? <span style={{ color: 'green', marginLeft: '1rem' }}>✓ Valid</span> : <span style={{ color: 'red', marginLeft: '1rem' }}>✗ Invalid</span>}
+              <div style={{ marginTop: '1rem', fontFamily: 'var(--font-mono)', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span>Result = [{scaledV[0].toFixed(1)}, {scaledV[1].toFixed(1)}]</span>
+                {inSet ? <span style={{ color: 'var(--green)', fontWeight: 'bold' }}>✓ Valid</span> : <span style={{ color: 'var(--red)', fontWeight: 'bold' }}>✗ Invalid</span>}
               </div>
             </div>
           </div>
+          
         </div>
 
       </div>

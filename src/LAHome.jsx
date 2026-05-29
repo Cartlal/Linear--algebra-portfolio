@@ -9,31 +9,31 @@ const OVERVIEW_CARDS = [
   {
     num: 'CH 01', title: 'Data as Vectors',
     desc: 'Structured representations of data. Feature vectors, dot products, norms, spans, and basis — the language of data.',
-    icon: 'fa-solid fa-arrow-right-arrow-left', hash: 'la-ch01',
+    icon: 'fa-solid fa-arrow-right-arrow-left', hash: 'data-as-vectors',
     color: '#FFD600', textColor: '#0a0a0a',
   },
   {
     num: 'CH 02', title: 'Matrices as System Operators',
     desc: 'Linear transformations, pipelines, and the machines of computation. How matrices encode transformations.',
-    icon: 'fa-solid fa-table-cells', hash: 'la-ch02',
+    icon: 'fa-solid fa-table-cells', hash: 'matrices-as-system-operators',
     color: '#0a0a0a', textColor: '#FFD600',
   },
   {
     num: 'CH 03', title: 'Solving Linear Systems',
     desc: 'Gaussian elimination, row reduction, and the algorithms that solve Ax = b. The engine behind modern computation.',
-    icon: 'fa-solid fa-equals', hash: 'la-ch03',
+    icon: 'fa-solid fa-equals', hash: 'solving-linear-systems',
     color: '#1A1AFF', textColor: '#fff',
   },
   {
     num: 'CH 04', title: 'Vector Spaces: Degrees of Freedom',
     desc: 'Null spaces, column spaces, rank, and the true shape of data in high dimensions.',
-    icon: 'fa-solid fa-cubes', hash: 'la-ch04',
+    icon: 'fa-solid fa-cubes', hash: 'vector-spaces',
     color: '#FF3B3B', textColor: '#fff',
   },
   {
     num: 'CH 05', title: 'Orthogonality',
     desc: 'Right angles in multidimensional space. Projections, Gram-Schmidt, and QR decomposition.',
-    icon: 'fa-solid fa-ruler-combined', hash: 'la-ch05',
+    icon: 'fa-solid fa-ruler-combined', hash: 'orthogonality',
     color: '#00C853', textColor: '#0a0a0a',
   },
 ]
