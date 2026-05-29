@@ -273,9 +273,95 @@ function Nav() {
   )
 }
 
+function MathTechBackground() {
+  const canvasRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let animationFrameId
+
+    const resizeCanvas = () => {
+      canvas.width = canvas.parentElement.offsetWidth
+      canvas.height = canvas.parentElement.offsetHeight
+    }
+    resizeCanvas()
+    window.addEventListener('resize', resizeCanvas)
+
+    const symbols = [
+      '0', '1', 'λ', 'π', '∑', '∫', 'dy/dx', 'Ax=λx', 'u·v',
+      '[]', 'M', 'v', '+', '−', '=', '√', 'θ', 'CSE', 'JS', 'Java', 'IoT',
+      '0101', 'matrix', 'vector', 'basis', 'span', 'norm', 'dim', 'RGB'
+    ]
+    const particles = []
+    const particleCount = 18
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * 300,
+        y: Math.random() * 400,
+        text: symbols[Math.floor(Math.random() * symbols.length)],
+        fontSize: Math.floor(Math.random() * 6) + 11, // 11px to 17px
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: -(Math.random() * 0.4 + 0.2), // upward
+        opacity: Math.random() * 0.4 + 0.15
+      })
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      
+      particles.forEach(p => {
+        ctx.globalAlpha = p.opacity
+        ctx.fillStyle = '#0a0a0a'
+        ctx.font = `bold ${p.fontSize}px Space Mono`
+        ctx.fillText(p.text, p.x, p.y)
+
+        p.x += p.speedX
+        p.y += p.speedY
+
+        if (p.y < -20) {
+          p.y = canvas.height + 20
+          p.x = Math.random() * canvas.width
+          p.opacity = Math.random() * 0.4 + 0.15
+        }
+        if (p.x < -20 || p.x > canvas.width + 20) {
+          p.x = Math.random() * canvas.width
+        }
+      })
+
+      ctx.globalAlpha = 1.0
+      animationFrameId = requestAnimationFrame(draw)
+    }
+    draw()
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1,
+        pointerEvents: 'none',
+        opacity: 0.28
+      }}
+    />
+  )
+}
+
 /* ──────────────────────────────
    HERO
-────────────────────────────── */
+   ────────────────────────────── */
 function Hero() {
   return (
     <section className="hero" id="home">
@@ -305,6 +391,7 @@ function Hero() {
 
       <div className="hero-right">
         <div className="hero-photo-zone">
+          <MathTechBackground />
           <div className="geo-deco deco-1" />
           <div className="geo-deco deco-2" />
           <div className="geo-deco deco-3" />

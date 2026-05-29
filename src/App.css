@@ -176,9 +176,31 @@
   position: absolute;
   border: 3px solid var(--black);
 }
-.deco-1 { width: 80px; height: 80px; background: var(--yellow); top: 20px; right: 30px; transform: rotate(15deg); }
-.deco-2 { width: 50px; height: 50px; background: var(--red); bottom: 30px; left: 20px; transform: rotate(-10deg); }
-.deco-3 { width: 30px; height: 30px; background: var(--blue); top: 50%; left: 20px; transform: rotate(45deg); }
+.deco-1 {
+  width: 80px; height: 80px; background: var(--yellow); top: 20px; right: 30px;
+  animation: floatDeco1 8s ease-in-out infinite alternate;
+}
+.deco-2 {
+  width: 50px; height: 50px; background: var(--red); bottom: 30px; left: 20px;
+  animation: floatDeco2 6s ease-in-out infinite alternate;
+}
+.deco-3 {
+  width: 30px; height: 30px; background: var(--blue); top: 50%; left: 20px;
+  animation: floatDeco3 7s ease-in-out infinite alternate;
+}
+
+@keyframes floatDeco1 {
+  0% { transform: translateY(0) rotate(15deg); }
+  100% { transform: translateY(-12px) rotate(35deg); }
+}
+@keyframes floatDeco2 {
+  0% { transform: translateY(0) rotate(-10deg); }
+  100% { transform: translateY(12px) rotate(15deg); }
+}
+@keyframes floatDeco3 {
+  0% { transform: translateY(0) rotate(45deg); }
+  100% { transform: translateY(-10px) rotate(-15deg); }
+}
 
 .photo-frame {
   width: 230px;
