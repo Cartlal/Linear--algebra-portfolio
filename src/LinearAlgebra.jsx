@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { LANav, LAChapterBar } from './LANav'
 
 /* ========================================================
    0. HOUSE FEATURE VECTOR VISUALIZER
@@ -703,49 +704,56 @@ function BasisDimensionVisualizer() {
 }
 
 /* ========================================================
-   MAIN COMPONENT
+   MAIN COMPONENT — CH 01
    ======================================================== */
 export default function LinearAlgebraPage() {
   return (
-    <div className="la-page-wrapper">
-      {/* HERO SECTION */}
-      <section className="la-hero">
-        <div className="la-hero-badge">
-          <i className="fa-solid fa-compass-drafting" /> CH 01: Data as a Vector
-        </div>
-        <h1 className="la-hero-title">
-          DATA AS A <br />
-          <span className="la-highlight">VECTOR</span>
-        </h1>
-        <p className="la-hero-sub">
-          Structured representations of data and basic metrics. Explore how computer science converts real-world entities into vector coordinates to analyze similarity, dimensions, and spans.
-        </p>
-      </section>
+    <div className="la-layout">
+      <LANav currentPage="la-ch01" />
 
-      {/* TICKER */}
-      <div className="ticker la-ticker" aria-hidden="true">
-        <div className="ticker-track">
-          {['FEATURE VECTORS', 'SCALAR SCALING', 'DOT PRODUCT', 'EUCLIDEAN DISTANCE', 'RGB SPAN', 'LINEAR COMBINATIONS', 'REDUNDANCY DETECTION', 'BASIS & DIMENSION', 'FEATURE VECTORS', 'DOT PRODUCT'].map((t, i) => (
-            <span key={i} className="ticker-item">{t}</span>
-          ))}
-        </div>
-      </div>
+      <main className="la-main">
+        {/* HERO SECTION */}
+        <section className="la-hero">
+          <div className="la-hero-badge">
+            <i className="fa-solid fa-compass-drafting" /> CH 01: Data as a Vector
+          </div>
+          <h1 className="la-hero-title">
+            DATA AS A <br />
+            <span className="la-highlight">VECTOR</span>
+          </h1>
+          <p className="la-hero-sub">
+            Structured representations of data and basic metrics. Explore how computer science converts real-world entities into vector coordinates to analyze similarity, dimensions, and spans.
+          </p>
+        </section>
 
-      {/* CORE EXPERIMENTS SECTION */}
-      <section className="la-section">
-        <div className="la-section-header">
-          <span className="la-section-number">01</span>
-          <h2 className="la-section-title">Interactive Mappings &amp; Playgrounds</h2>
+        {/* TICKER */}
+        <div className="ticker la-ticker" aria-hidden="true">
+          <div className="ticker-track">
+            {['FEATURE VECTORS', 'SCALAR SCALING', 'DOT PRODUCT', 'EUCLIDEAN DISTANCE', 'RGB SPAN', 'LINEAR COMBINATIONS', 'REDUNDANCY DETECTION', 'BASIS & DIMENSION', 'FEATURE VECTORS', 'DOT PRODUCT'].map((t, i) => (
+              <span key={i} className="ticker-item">{t}</span>
+            ))}
+          </div>
         </div>
-        <div className="la-section-content" style={{ padding: '0 4rem 4rem' }}>
-          <HouseVectorVisualizer />
-          <AdditionScalingVisualizer />
-          <DotProductVisualizer />
-          <DistanceProjectionVisualizer />
-          <RGBSpanVisualizer />
-          <BasisDimensionVisualizer />
-        </div>
-      </section>
+
+        {/* CORE EXPERIMENTS SECTION */}
+        <section className="la-section">
+          <div className="la-section-header">
+            <span className="la-section-number">01</span>
+            <h2 className="la-section-title">Interactive Mappings &amp; Playgrounds</h2>
+          </div>
+          <div className="la-section-content" style={{ padding: '0 4rem 4rem' }}>
+            <HouseVectorVisualizer />
+            <AdditionScalingVisualizer />
+            <DotProductVisualizer />
+            <DistanceProjectionVisualizer />
+            <RGBSpanVisualizer />
+            <BasisDimensionVisualizer />
+          </div>
+        </section>
+
+        <LAChapterBar currentPage="la-ch01" />
+      </main>
     </div>
   )
 }
+

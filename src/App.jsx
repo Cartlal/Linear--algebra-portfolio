@@ -2,6 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import karthikPhoto from './assets/karthik photo.jpeg'
 import LinearAlgebraPage from './LinearAlgebra'
+import LAHomePage from './LAHome'
+import Ch02Page from './Ch02'
+import Ch03Page from './Ch03'
+import Ch04Page from './Ch04'
+import Ch05Page from './Ch05'
 
 /* ──────────────────────────────
    DATA
@@ -266,7 +271,7 @@ function Nav() {
           </li>
         ))}
         <li>
-          <a href="#linear-algebra" className="nav-highlight">Linear Algebra</a>
+          <a href="#la-home" className="nav-highlight">Linear Algebra</a>
         </li>
       </ul>
     </nav>
@@ -914,8 +919,10 @@ export default function App() {
 
   useEffect(() => {
     const handleHash = () => {
-      if (window.location.hash === '#linear-algebra') {
-        setView('linear-algebra')
+      const hash = window.location.hash.replace('#', '')
+      const LA_VIEWS = ['la-home', 'la-ch01', 'la-ch02', 'la-ch03', 'la-ch04', 'la-ch05', 'linear-algebra']
+      if (LA_VIEWS.includes(hash)) {
+        setView(hash === 'linear-algebra' ? 'la-ch01' : hash)
       } else {
         setView('portfolio')
       }
@@ -925,26 +932,23 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHash)
   }, [])
 
-  if (view === 'linear-algebra') {
+  /* LA Section — each chapter is a full self-contained page with its own sidebar nav */
+  const LA_PAGES = {
+    'la-home': <LAHomePage />,
+    'la-ch01': <LinearAlgebraPage />,
+    'la-ch02': <Ch02Page />,
+    'la-ch03': <Ch03Page />,
+    'la-ch04': <Ch04Page />,
+    'la-ch05': <Ch05Page />,
+  }
+
+  if (LA_PAGES[view]) {
     return (
       <>
-        {/* Simple back header instead of the heavy main nav */}
-        <nav className="nav">
-          <div className="nav-logo" style={{ cursor: 'pointer' }} onClick={() => window.location.hash = ''}>
-            K<span>H</span>
-          </div>
-          <ul className="nav-links">
-            <li>
-              <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; }} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <i className="fa-solid fa-arrow-left" /> Back to Portfolio
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <LinearAlgebraPage />
+        {LA_PAGES[view]}
         <footer className="footer" style={{ background: '#ede8dc' }}>
           <div className="footer-logo">KARTHIK <span>HIRENARTI</span></div>
-          <div className="footer-copy">© 2026 Karthik Hirenarti. Linear Algebra Academic Project.</div>
+          <div className="footer-copy">© 2026 Karthik Hirenarti · Linear Algebra Academic Project</div>
         </footer>
       </>
     )
