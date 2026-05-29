@@ -48,6 +48,12 @@ const OVERVIEW_CARDS = [
     icon: 'fa-solid fa-layer-group', hash: 'singular-value-decomposition',
     color: '#00e5ff', textColor: '#0a0a0a',
   },
+  {
+    num: 'FINAL', title: 'Lab Report & Presentation',
+    desc: 'Comprehensive documentation and presentation slides for the Linear Algebra course.',
+    icon: 'fa-regular fa-file-pdf', hash: 'lab-report',
+    color: '#b366ff', textColor: '#fff',
+  },
 ]
 
 const CSE_USES = [

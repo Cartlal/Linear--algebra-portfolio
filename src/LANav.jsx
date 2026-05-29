@@ -14,6 +14,7 @@ const LA_CHAPTERS = [
   { id: 'la-ch05', label: 'CH 05 — Orthogonality', icon: 'fa-solid fa-ruler-combined', short: 'CH 05' },
   { id: 'la-ch06', label: 'CH 06 — Eigenvalues & Eigenvectors', icon: 'fa-solid fa-bolt', short: 'CH 06' },
   { id: 'la-ch07', label: 'CH 07 — Singular Value Decomposition', icon: 'fa-solid fa-layer-group', short: 'CH 07' },
+  { id: 'la-lab-report', label: 'Final Lab Report & Presentation', icon: 'fa-solid fa-file-pdf', short: 'Lab Report' },
 ]
 
 export function LATopBar({ currentPage }) {

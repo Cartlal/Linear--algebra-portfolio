@@ -9,6 +9,7 @@ import Ch04Page from './VectorSpaces'
 import Ch05Page from './Orthogonality'
 import Ch06Page from './Eigenvalues'
 import Ch07Page from './SVD'
+import LabReportPage from './LabReport'
 
 /* ──────────────────────────────
    DATA
@@ -924,7 +925,7 @@ export default function App() {
       // Remove leading slash, e.g. "/data-as-vectors" -> "data-as-vectors"
       const path = window.location.pathname.replace(/^\/+/, '')
       
-      const LA_VIEWS = ['la-home', 'data-as-vectors', 'matrices-as-system-operators', 'solving-linear-systems', 'vector-spaces', 'orthogonality', 'eigenvalues-and-eigenvectors', 'singular-value-decomposition']
+      const LA_VIEWS = ['la-home', 'data-as-vectors', 'matrices-as-system-operators', 'solving-linear-systems', 'vector-spaces', 'orthogonality', 'eigenvalues-and-eigenvectors', 'singular-value-decomposition', 'lab-report']
       
       if (LA_VIEWS.includes(path)) {
         setView(path)
@@ -947,6 +948,7 @@ export default function App() {
     'orthogonality': <Ch05Page />,
     'eigenvalues-and-eigenvectors': <Ch06Page />,
     'singular-value-decomposition': <Ch07Page />,
+    'lab-report': <LabReportPage />,
   }
 
   if (LA_PAGES[view]) {
