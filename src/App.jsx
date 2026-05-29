@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import karthikPhoto from './assets/karthik photo.jpeg'
+import LinearAlgebraPage from './LinearAlgebra'
 
 /* ──────────────────────────────
    DATA
@@ -264,6 +265,9 @@ function Nav() {
             <a href={`#${l.toLowerCase()}`}>{l}</a>
           </li>
         ))}
+        <li>
+          <a href="#linear-algebra" className="nav-highlight">Linear Algebra</a>
+        </li>
       </ul>
     </nav>
   )
@@ -819,6 +823,46 @@ function Footer() {
    APP
 ────────────────────────────── */
 export default function App() {
+  const [view, setView] = useState('portfolio')
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#linear-algebra') {
+        setView('linear-algebra')
+      } else {
+        setView('portfolio')
+      }
+    }
+    handleHash()
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [])
+
+  if (view === 'linear-algebra') {
+    return (
+      <>
+        {/* Simple back header instead of the heavy main nav */}
+        <nav className="nav">
+          <div className="nav-logo" style={{ cursor: 'pointer' }} onClick={() => window.location.hash = ''}>
+            K<span>H</span>
+          </div>
+          <ul className="nav-links">
+            <li>
+              <a href="#" onClick={(e) => { e.preventDefault(); window.location.hash = ''; }} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <i className="fa-solid fa-arrow-left" /> Back to Portfolio
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <LinearAlgebraPage />
+        <footer className="footer" style={{ background: '#ede8dc' }}>
+          <div className="footer-logo">KARTHIK <span>HIRENARTI</span></div>
+          <div className="footer-copy">© 2026 Karthik Hirenarti. Linear Algebra Academic Project.</div>
+        </footer>
+      </>
+    )
+  }
+
   return (
     <>
       <Nav />
