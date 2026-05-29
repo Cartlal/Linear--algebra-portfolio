@@ -303,7 +303,7 @@ function MathTechBackground() {
       '0101', 'matrix', 'vector', 'basis', 'span', 'norm', 'dim', 'RGB'
     ]
     const particles = []
-    const particleCount = 18
+    const particleCount = 65
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -361,7 +361,7 @@ function MathTechBackground() {
         height: '100%',
         zIndex: 1,
         pointerEvents: 'none',
-        opacity: 0.28
+        opacity: 0.7
       }}
     />
   )
