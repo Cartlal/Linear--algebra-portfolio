@@ -732,8 +732,8 @@ function Achievements() {
         <FadeIn className="ach-card">
           <div className="ach-icon">🚀</div>
           <div>
-            <div className="ach-title">Asteria Fest Development</div>
-            <div className="ach-desc">Driven development and experimental projects during Asteria Fest 2025, building real-world solutions under pressure and coordinating large-scale technical events.</div>
+            <div className="ach-title">Backend Engineer — Asteria Fest</div>
+            <div className="ach-desc">Developed the backend for the Asteria college fest website. Engineered a high-availability registration system with <strong>zero downtime</strong>, successfully processing over <strong>₹33,000</strong> in web registrations.</div>
           </div>
         </FadeIn>
       </div>
