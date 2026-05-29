@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 
 /* ============================================================
    CH 04 — Vector Spaces: Degrees of Freedom
+   (Neo-Brutalist Styling)
    ============================================================ */
 
 // ── 1. WHAT IS A VECTOR SPACE? ──
@@ -13,56 +14,34 @@ function VectorSpaceWidget() {
   const inSet = scaledV[0] >= 0 && scaledV[1] >= 0
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>1. What is a Vector Space?</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>A subspace must pass three tests: Contains Zero, Closed under Addition, Closed under Scaling.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--yellow)' }}>1. What is a Vector Space?</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>A <strong>vector space</strong> is any set where you can add vectors and scale them, and the result stays in the set. A <strong>subspace</strong> must pass three tests:</p>
         
-        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'stretch' }}>
-          
-          {/* Valid Subspace Box */}
-          <div style={{ flex: 1, border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--white)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ fontSize: '1.1rem' }}>
-              <strong>Valid Subspace:</strong><br/>
-              A line through the origin in 2D space.
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: 'auto' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> Contains (0,0)</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> u + v stays on the line</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> c * v stays on the line</div>
-            </div>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div className="neo-toggle-btn" style={{ background: 'var(--green)' }}>
+            <i className="fa-regular fa-circle-check" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}></i>
+            <div className="neo-toggle-btn-title">Contains Zero</div>
+            <div className="neo-toggle-btn-sub">The zero vector must be in the set.</div>
           </div>
-          
-          {/* Counter-Example Box */}
-          <div style={{ flex: 1, border: `3px solid ${inSet ? 'var(--black)' : 'var(--red)'}`, padding: '1.5rem', background: inSet ? 'var(--white)' : '#ffe6e6', display: 'flex', flexDirection: 'column', gap: '1rem', transition: 'all 0.2s' }}>
-            <div style={{ fontSize: '1.1rem' }}>
-              <strong>Counter-Example:</strong><br/>
-              First Quadrant only {'{ (x,y) | x≥0, y≥0 }'}
-            </div>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> Contains (0,0)</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}><span>✅</span> u + v stays in First Quadrant</div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: inSet ? 'var(--black)' : 'var(--red)', fontWeight: inSet ? 'normal' : 'bold' }}>
-                <span>{inSet ? '❓' : '❌'}</span> {inSet ? "c * v ... let's test it" : "Escaped the subset! Scaling failed."}
-              </div>
-            </div>
-            
-            <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '2px dashed rgba(0,0,0,0.2)' }}>
-              <label style={{ fontWeight: 'bold', display: 'block', marginBottom: '0.5rem' }}>Scale Vector v(2,2) by c = {scalar.toFixed(1)}</label>
-              <input type="range" min="-2" max="2" step="0.1" value={scalar} onChange={e=>setScalar(Number(e.target.value))} style={{ width: '100%', cursor: 'pointer' }} />
-              
-              <div style={{ marginTop: '1rem', fontFamily: 'var(--font-mono)', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span>Result = [{scaledV[0].toFixed(1)}, {scaledV[1].toFixed(1)}]</span>
-                {inSet ? <span style={{ color: 'var(--green)', fontWeight: 'bold' }}>✓ Valid</span> : <span style={{ color: 'var(--red)', fontWeight: 'bold' }}>✗ Invalid</span>}
-              </div>
-            </div>
+          <div className="neo-toggle-btn" style={{ background: 'var(--green)' }}>
+            <i className="fa-solid fa-plus" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}></i>
+            <div className="neo-toggle-btn-title">Closed Under Addition</div>
+            <div className="neo-toggle-btn-sub">u + v stays in the set.</div>
           </div>
-          
+          <div className="neo-toggle-btn" style={{ background: 'var(--green)' }}>
+            <i className="fa-solid fa-arrows-left-right-to-line" style={{ fontSize: '1.5rem', marginBottom: '0.5rem', transform: 'rotate(45deg)' }}></i>
+            <div className="neo-toggle-btn-title">Closed Under Scaling</div>
+            <div className="neo-toggle-btn-sub">c · v stays in the set.</div>
+          </div>
         </div>
 
+        <div className="neo-equation-box" style={{ background: 'var(--red)', color: 'white', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <i className="fa-solid fa-triangle-exclamation"></i>
+          <span style={{ fontSize: '1rem', fontWeight: 'bold', fontFamily: 'var(--font-main)' }}>Counter-example: The set {'{ (x,y) | x ≥ 0, y ≥ 0 }'} is NOT a subspace. Scaling by -1 leaves the set!</span>
+        </div>
       </div>
     </div>
   )
@@ -73,14 +52,13 @@ function SpanWidget() {
   const [mode, setMode] = useState('1v') // 1v, 2v, 2dep
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>2. Span: The Generative Model</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>The span of a set of vectors is every possible linear combination. It's the "reach" of your vectors.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--red)', color: 'white' }}>2. Span: The Generative Model</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>The <strong>span</strong> of a set of vectors is every possible linear combination. It's the "reach" of your vectors — every point you can generate.</p>
         
-        <div style={{ flex: 1, height: '300px', background: '#fafafa', border: '3px solid var(--black)', position: 'relative', overflow: 'hidden' }}>
+        <div className="neo-canvas-container" style={{ height: '300px' }}>
           {/* Isometric projection simulation via CSS transform */}
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotateX(60deg) rotateZ(-45deg)', width: '400px', height: '400px' }}>
             
@@ -93,7 +71,7 @@ function SpanWidget() {
             
             {/* Shapes based on mode */}
             {mode === '1v' && (
-              <div style={{ position: 'absolute', top: 0, bottom: 0, left: '200px', width: '4px', background: 'var(--blue)', transform: 'rotate(30deg)', transformOrigin: 'center center' }} />
+              <div style={{ position: 'absolute', top: 0, bottom: 0, left: '200px', width: '6px', background: 'var(--blue)', transform: 'rotate(30deg)', transformOrigin: 'center center' }} />
             )}
             
             {mode === '2v' && (
@@ -101,25 +79,23 @@ function SpanWidget() {
             )}
             
             {mode === '2dep' && (
-              <div style={{ position: 'absolute', top: 0, bottom: 0, left: '200px', width: '4px', background: 'var(--red)', transform: 'rotate(60deg)', transformOrigin: 'center center' }} />
+              <div style={{ position: 'absolute', top: 0, bottom: 0, left: '200px', width: '6px', background: 'var(--red)', transform: 'rotate(60deg)', transformOrigin: 'center center' }} />
             )}
             
           </div>
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '200px' }}>
-          <button className={`la-btn ${mode === '1v' ? 'active' : ''}`} onClick={() => setMode('1v')}>1 Vector</button>
-          <button className={`la-btn ${mode === '2v' ? 'active' : ''}`} onClick={() => setMode('2v')}>2 Vectors</button>
-          <button className={`la-btn ${mode === '2dep' ? 'active' : ''}`} onClick={() => setMode('2dep')}>2 Dependent</button>
-          
-          <div style={{ marginTop: '1rem', padding: '1rem', border: '2px solid var(--black)', background: 'var(--white)' }}>
-            <strong>Result:</strong><br/>
-            {mode === '1v' && 'Spans a 1D Line through the origin.'}
-            {mode === '2v' && 'Spans the entire 2D Plane.'}
-            {mode === '2dep' && 'Redundant! Still only spans a 1D Line.'}
-          </div>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <button className={`la-btn-sm ${mode === '1v' ? 'active' : ''}`} style={{ background: mode==='1v' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMode('1v')}>1 Vector (Line)</button>
+          <button className={`la-btn-sm ${mode === '2v' ? 'active' : ''}`} style={{ background: mode==='2v' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMode('2v')}>2 Vectors (Plane)</button>
+          <button className={`la-btn-sm ${mode === '2dep' ? 'active' : ''}`} style={{ background: mode==='2dep' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMode('2dep')}>2 Dependent (Line)</button>
         </div>
         
+        <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+          {mode === '1v' && 'One vector spans a line through the origin.'}
+          {mode === '2v' && 'Two independent vectors span the entire 2D plane.'}
+          {mode === '2dep' && 'Two dependent vectors (collinear) only span a 1D line.'}
+        </div>
       </div>
     </div>
   )
@@ -127,38 +103,36 @@ function SpanWidget() {
 
 // ── 3. BASIS & DIMENSION ──
 function BasisWidget() {
-  const [space, setSpace] = useState('R2')
-  
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>3. Basis & Dimension</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>A basis is the minimum set of vectors needed to span the entire space. The number of basis vectors is the dimension.</p>
-      </div>
-      <div className="subcard-content" style={{ padding: '2rem' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--blue)', color: 'white' }}>3. Basis & Dimension</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>A <strong>basis</strong> is the minimum set of vectors needed to span the entire space. The number of basis vectors is the <strong>dimension</strong>.</p>
         
-        <div style={{ display: 'flex', gap: '1rem', borderBottom: '3px solid var(--black)', paddingBottom: '1rem' }}>
-          <button className={`la-btn-sm ${space === 'R2' ? 'active' : ''}`} onClick={() => setSpace('R2')}>R² (2D)</button>
-          <button className={`la-btn-sm ${space === 'R3' ? 'active' : ''}`} onClick={() => setSpace('R3')}>R³ (3D)</button>
-          <button className={`la-btn-sm ${space === 'Rn' ? 'active' : ''}`} onClick={() => setSpace('Rn')}>Rⁿ (n-D)</button>
-        </div>
-        
-        <div style={{ marginTop: '2rem', display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <div style={{ flex: 1, fontSize: '1.5rem', fontFamily: 'var(--font-mono)' }}>
-            <strong>Dimension:</strong> {space === 'R2' ? '2' : space === 'R3' ? '3' : 'n'} <br/><br/>
-            <strong>Basis Vectors:</strong><br/>
-            {space === 'R2' && <span className="highlight-yellow">{'{ [1,0], [0,1] }'}</span>}
-            {space === 'R3' && <span className="highlight-blue">{'{ [1,0,0], [0,1,0], [0,0,1] }'}</span>}
-            {space === 'Rn' && <span className="highlight-red">{'{ e₁, e₂, ..., eₙ }'}</span>}
-          </div>
-          
-          <div style={{ flex: 1, padding: '1.5rem', background: 'var(--black)', color: 'var(--white)', border: '4px solid var(--yellow)' }}>
-            {space === 'R2' && "Exactly 2 vectors are needed to reach everywhere on a flat plane."}
-            {space === 'R3' && "Exactly 3 vectors are needed to reach everywhere in physical space."}
-            {space === 'Rn' && "Exactly n vectors are needed. No more (they'd be dependent), no less (they wouldn't span)."}
-          </div>
+        <div className="neo-equation-box" style={{ background: '#fafafa' }}>
+          Basis = Linearly Independent + Spans the Space
         </div>
 
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+          <div className="neo-toggle-btn" style={{ background: 'var(--yellow)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: '900', marginBottom: '1rem' }}>R²</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Dimension: 2</div>
+            <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>Basis: {'{ [1,0], [0,1] }'}</div>
+          </div>
+
+          <div className="neo-toggle-btn" style={{ background: 'var(--blue)', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: '900', marginBottom: '1rem' }}>R³</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Dimension: 3</div>
+            <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>Basis: {'{ e₁, e₂, e₃ }'}</div>
+          </div>
+
+          <div className="neo-toggle-btn" style={{ background: '#c175ff', color: 'white', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: '900', marginBottom: '1rem' }}>Rⁿ</div>
+            <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>Dimension: n</div>
+            <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>n vectors needed, no more, no less</div>
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -175,34 +149,45 @@ function RankNullityWidget() {
   if (matrixType === 'rank2') { cols = 4; rank = 2; nullity = 2; }
   else if (matrixType === 'rank1') { cols = 3; rank = 1; nullity = 2; }
   
+  const rankPercent = (rank / cols) * 100
+  
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>4. Rank-Nullity Theorem</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>For any matrix A, the information splits perfectly: rank(A) + nullity(A) = n (number of columns).</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--green)' }}>4. Rank-Nullity Theorem</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>For any matrix A (m × n), the information splits perfectly:</p>
         
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button className={`la-btn ${matrixType === 'full' ? 'active' : ''}`} onClick={() => setMatrixType('full')}>Full Rank (3×3)</button>
-          <button className={`la-btn ${matrixType === 'rank2' ? 'active' : ''}`} onClick={() => setMatrixType('rank2')}>Rank 2 (3×4)</button>
-          <button className={`la-btn ${matrixType === 'rank1' ? 'active' : ''}`} onClick={() => setMatrixType('rank1')}>Rank 1 (2×3)</button>
-        </div>
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', fontSize: '2rem', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>
-          <div style={{ background: 'var(--yellow)', padding: '1rem', border: '3px solid var(--black)', textAlign: 'center' }}>
-            RANK<br/><span style={{ fontSize: '3rem' }}>{rank}</span>
-          </div>
-          <div>+</div>
-          <div style={{ background: 'var(--blue)', color: 'white', padding: '1rem', border: '3px solid var(--black)', textAlign: 'center' }}>
-            NULLITY<br/><span style={{ fontSize: '3rem' }}>{nullity}</span>
-          </div>
-          <div>=</div>
-          <div style={{ background: 'var(--black)', color: 'var(--yellow)', padding: '1rem', border: '3px solid var(--black)', textAlign: 'center' }}>
-            COLUMNS<br/><span style={{ fontSize: '3rem' }}>{cols}</span>
-          </div>
+        <div className="neo-equation-box" style={{ background: 'var(--yellow)' }}>
+          rank(A) + nullity(A) = n (number of columns)
         </div>
 
+        <div style={{ background: 'var(--black)', padding: '2rem', border: '3px solid var(--black)', textAlign: 'center' }}>
+          <div style={{ color: 'white', marginBottom: '1rem', fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>
+            {matrixType === 'full' ? '3×3 Full Rank: rank=3, nullity=0' : matrixType === 'rank2' ? '3×4 Rank 2: rank=2, nullity=2' : '2×3 Rank 1: rank=1, nullity=2'}
+          </div>
+          
+          <div style={{ display: 'flex', height: '40px', width: '80%', margin: '0 auto', border: '2px solid white' }}>
+            <div style={{ width: `${rankPercent}%`, background: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'var(--black)' }}>
+              Rank: {rank}
+            </div>
+            {nullity > 0 && (
+              <div style={{ width: `${100 - rankPercent}%`, background: 'var(--red)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white' }}>
+                Nullity: {nullity}
+              </div>
+            )}
+          </div>
+          
+          <div style={{ color: 'white', marginTop: '1rem', fontSize: '0.9rem', fontFamily: 'var(--font-mono)' }}>
+            n = {cols} columns
+          </div>
+        </div>
+        
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <button className={`la-btn-sm ${matrixType === 'full' ? 'active' : ''}`} style={{ background: matrixType==='full' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMatrixType('full')}>Full Rank (3×3)</button>
+          <button className={`la-btn-sm ${matrixType === 'rank2' ? 'active' : ''}`} style={{ background: matrixType==='rank2' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMatrixType('rank2')}>Rank 2 (3×4)</button>
+          <button className={`la-btn-sm ${matrixType === 'rank1' ? 'active' : ''}`} style={{ background: matrixType==='rank1' ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setMatrixType('rank1')}>Rank 1 (2×3)</button>
+        </div>
       </div>
     </div>
   )
@@ -211,164 +196,69 @@ function RankNullityWidget() {
 // ── 5. FUNDAMENTAL SUBSPACES ──
 function SubspacesWidget() {
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>5. The Four Fundamental Subspaces</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>Every matrix A defines four subspaces — the complete "information architecture" of a transformation.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', padding: '2rem' }}>
-        
-        <div style={{ border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--yellow)' }}>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>1. Column Space C(A)</h4>
-          <p>What outputs are reachable in the target space.</p>
-          <strong style={{ fontFamily: 'var(--font-mono)' }}>dim = rank(A)</strong>
-        </div>
-        
-        <div style={{ border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--blue)', color: 'white' }}>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>2. Null Space N(A)</h4>
-          <p>Inputs that are crushed to the zero vector.</p>
-          <strong style={{ fontFamily: 'var(--font-mono)' }}>dim = n - rank(A)</strong>
-        </div>
-
-        <div style={{ border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--red)', color: 'white' }}>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>3. Row Space C(Aᵀ)</h4>
-          <p>The "active" inputs that actually matter and map to C(A).</p>
-          <strong style={{ fontFamily: 'var(--font-mono)' }}>dim = rank(A)</strong>
-        </div>
-
-        <div style={{ border: '3px solid var(--black)', padding: '1.5rem', background: 'var(--white)' }}>
-          <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', marginBottom: '0.5rem' }}>4. Left Null Space N(Aᵀ)</h4>
-          <p>Constraints on outputs (unreachable parts of target space).</p>
-          <strong style={{ fontFamily: 'var(--font-mono)' }}>dim = m - rank(A)</strong>
-        </div>
-
-      </div>
-    </div>
-  )
-}
-
-// ── 6. ROBOT ARM ──
-function RobotArmWidget() {
-  const [fails, setFails] = useState(false)
-  const canvasRef = useRef(null)
-  
-  useEffect(() => {
-    const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0,0,600,300)
-    
-    // Base
-    ctx.fillStyle = 'var(--black)'
-    ctx.fillRect(280, 250, 40, 50)
-    
-    // Arm 1
-    ctx.strokeStyle = 'var(--yellow)'
-    ctx.lineWidth = 15
-    ctx.lineCap = 'round'
-    ctx.beginPath()
-    ctx.moveTo(300, 250)
-    ctx.lineTo(250, 150)
-    ctx.stroke()
-    
-    // Arm 2
-    ctx.strokeStyle = 'var(--blue)'
-    ctx.beginPath()
-    ctx.moveTo(250, 150)
-    ctx.lineTo(350, 100)
-    ctx.stroke()
-    
-    // Arm 3
-    if (fails) {
-      // Locked, stuck in a straight line with arm 2
-      ctx.strokeStyle = 'var(--red)'
-      ctx.beginPath()
-      ctx.moveTo(350, 100)
-      ctx.lineTo(450, 50)
-      ctx.stroke()
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: '#ff8c00', color: 'black' }}>5. The Four Fundamental Subspaces</div>
       
-      // Draw red X
-      ctx.strokeStyle = 'red'
-      ctx.lineWidth = 4
-      ctx.beginPath()
-      ctx.moveTo(340, 90)
-      ctx.lineTo(360, 110)
-      ctx.moveTo(360, 90)
-      ctx.lineTo(340, 110)
-      ctx.stroke()
-      
-    } else {
-      // Free to move
-      ctx.strokeStyle = 'var(--green)'
-      ctx.beginPath()
-      ctx.moveTo(350, 100)
-      ctx.lineTo(320, 40)
-      ctx.stroke()
-    }
-    
-    // Joints
-    ctx.fillStyle = 'var(--white)'
-    ctx.strokeStyle = 'var(--black)'
-    ctx.lineWidth = 3
-    const drawJoint = (x,y) => {
-      ctx.beginPath(); ctx.arc(x,y, 10, 0, Math.PI*2); ctx.fill(); ctx.stroke();
-    }
-    drawJoint(300,250); drawJoint(250,150); drawJoint(350,100);
-    drawJoint(fails ? 450 : 320, fails ? 50 : 40); // End effector
-
-  }, [fails])
-  
-  return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>6. Application: Robot Arm Workspace</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>The column space tells us where the gripper can reach. The null space reveals redundant motor combinations.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', gap: '2rem', padding: '2rem' }}>
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>Every matrix A defines four subspaces — the complete "information architecture" of a transformation:</p>
         
-        <canvas ref={canvasRef} width={600} height={300} style={{ border: '3px solid var(--black)', background: '#fafafa', width: '100%', maxWidth: '500px' }} />
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', justifyContent: 'center' }}>
-          <button className={`la-btn ${!fails ? 'active' : ''}`} onClick={() => setFails(false)}>All 3 Motors</button>
-          <button className={`la-btn ${fails ? 'active' : ''}`} style={{ borderColor: fails ? 'red' : '' }} onClick={() => setFails(true)}>Motor 3 Fails</button>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           
-          <div style={{ marginTop: '1rem', padding: '1rem', background: fails ? '#ffe6e6' : '#e6ffe6', border: '2px solid var(--black)' }}>
-            {fails ? 
-              "Motor 3 is locked (dependent on M2). The robot loses a degree of freedom. It can still reach a plane, but cannot maneuver around obstacles as effectively." : 
-              "3 independent motors. The workspace is a full 3D volume (or a highly flexible 2D plane with redundancy to avoid obstacles)."}
+          <div className="neo-toggle-btn" style={{ background: 'var(--blue)', color: 'white', flex: 1, padding: '2rem 1rem' }}>
+            <div className="neo-toggle-btn-title">Column Space</div>
+            <div className="neo-toggle-btn-sub" style={{ fontFamily: 'var(--font-mono)', margin: '0.5rem 0' }}>C(A) — what outputs are reachable</div>
+            <div className="neo-toggle-btn-sub" style={{ fontWeight: 'bold' }}>dim = rank</div>
           </div>
+
+          <div className="neo-toggle-btn" style={{ background: 'var(--green)', color: 'black', flex: 1, padding: '2rem 1rem' }}>
+            <div className="neo-toggle-btn-title">Row Space</div>
+            <div className="neo-toggle-btn-sub" style={{ fontFamily: 'var(--font-mono)', margin: '0.5rem 0' }}>C(Aᵀ) — what inputs matter</div>
+            <div className="neo-toggle-btn-sub" style={{ fontWeight: 'bold' }}>dim = rank</div>
+          </div>
+
+          <div className="neo-toggle-btn" style={{ background: 'var(--red)', color: 'white', flex: 1, padding: '2rem 1rem' }}>
+            <div className="neo-toggle-btn-title">Null Space</div>
+            <div className="neo-toggle-btn-sub" style={{ fontFamily: 'var(--font-mono)', margin: '0.5rem 0' }}>N(A) — inputs that produce zero</div>
+            <div className="neo-toggle-btn-sub" style={{ fontWeight: 'bold' }}>dim = nullity</div>
+          </div>
+
+          <div className="neo-toggle-btn" style={{ background: 'var(--yellow)', color: 'black', flex: 1, padding: '2rem 1rem' }}>
+            <div className="neo-toggle-btn-title">Left Null Space</div>
+            <div className="neo-toggle-btn-sub" style={{ fontFamily: 'var(--font-mono)', margin: '0.5rem 0' }}>N(Aᵀ) — constraints on outputs</div>
+            <div className="neo-toggle-btn-sub" style={{ fontWeight: 'bold' }}>dim = m - rank</div>
+          </div>
+
         </div>
-        
       </div>
     </div>
   )
 }
-
 
 export default function Ch04Page() {
   return (
     <div className="la-embed-page">
 
       {/* HERO */}
-        <section className="la-hero" style={{ background: 'var(--red)', color: 'var(--white)' }}>
-          <div className="la-hero-badge" style={{ background: 'var(--black)', color: 'var(--white)' }}>
-            <i className="fa-solid fa-cube" /> CH 04 · Vector Spaces
+        <section className="la-hero" style={{ background: '#c175ff', color: 'var(--white)' }}>
+          <div className="la-hero-badge" style={{ background: 'var(--white)', color: 'var(--black)' }}>
+            CH 04
           </div>
           <h1 className="la-hero-title">
-            VECTOR SPACES:<br/><span style={{ color: 'var(--black)' }}>DEGREES OF FREEDOM</span>
+            Vector Spaces: Degrees of Freedom
           </h1>
-          <p className="la-hero-sub" style={{ borderColor: 'var(--black)', color: 'var(--black)', fontWeight: 'bold' }}>
+          <p className="la-hero-sub" style={{ borderColor: 'transparent', color: 'var(--white)', fontWeight: 'bold', paddingLeft: 0 }}>
             Span, basis, dimension, and the architecture of data.
           </p>
         </section>
 
         {/* EXPERIMENTS */}
-        <section className="la-section" style={{ padding: '4rem 2rem', background: 'var(--cream)' }}>
-          <div className="la-section-inner" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+        <section className="la-section" style={{ padding: '4rem 2rem', background: '#fafafa' }}>
+          <div className="la-section-inner" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             <VectorSpaceWidget />
             <SpanWidget />
             <BasisWidget />
             <RankNullityWidget />
             <SubspacesWidget />
-            <RobotArmWidget />
           </div>
         </section>
 

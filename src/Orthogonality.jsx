@@ -2,15 +2,15 @@ import React, { useState, useEffect, useRef } from 'react'
 
 /* ============================================================
    CH 05 — Orthogonality
+   (Neo-Brutalist Styling)
    ============================================================ */
 
 // Helper to draw vectors
 const drawVector = (ctx, originX, originY, vx, vy, color, label) => {
   const scale = 50
   const endX = originX + vx * scale
-  const endY = originY - vy * scale // -vy because canvas y is down
+  const endY = originY - vy * scale
   
-  // Line
   ctx.beginPath()
   ctx.moveTo(originX, originY)
   ctx.lineTo(endX, endY)
@@ -18,7 +18,6 @@ const drawVector = (ctx, originX, originY, vx, vy, color, label) => {
   ctx.lineWidth = 4
   ctx.stroke()
   
-  // Arrow head
   const angle = Math.atan2(originY - endY, originX - endX)
   ctx.beginPath()
   ctx.moveTo(endX, endY)
@@ -28,7 +27,6 @@ const drawVector = (ctx, originX, originY, vx, vy, color, label) => {
   ctx.fillStyle = color
   ctx.fill()
   
-  // Label
   if (label) {
     ctx.fillStyle = 'black'
     ctx.font = 'bold 16px var(--font-mono)'
@@ -39,75 +37,34 @@ const drawVector = (ctx, originX, originY, vx, vy, color, label) => {
 // ── 1. ORTHOGONAL VECTORS ──
 function OrthogonalWidget() {
   const [mode, setMode] = useState('not') // not, orth, norm
-  const canvasRef = useRef(null)
-  
-  useEffect(() => {
-    const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0,0,400,300)
-    
-    // Draw Axes
-    ctx.strokeStyle = '#ddd'
-    ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.moveTo(0, 150); ctx.lineTo(400, 150)
-    ctx.moveTo(200, 0); ctx.lineTo(200, 300)
-    ctx.stroke()
-    
-    const ox = 200, oy = 150
-    let u = [2, 1]
-    let v = [-1, 1]
-    
-    if (mode === 'not') { v = [1, 2] }
-    else if (mode === 'orth') { v = [-1, 2] }
-    else if (mode === 'norm') { 
-      // normalize
-      const magU = Math.sqrt(u[0]*u[0] + u[1]*u[1])
-      const magV = Math.sqrt(v[0]*v[0] + v[1]*v[1])
-      u = [u[0]/magU, u[1]/magU]
-      v = [-1/magV, 2/magV]
-    }
-    
-    const dot = (u[0]*v[0] + u[1]*v[1]).toFixed(2)
-    
-    // Draw 90 deg box if orthogonal
-    if (mode === 'orth' || mode === 'norm') {
-      ctx.strokeStyle = 'rgba(0,0,0,0.3)'
-      ctx.lineWidth = 2
-      ctx.beginPath()
-      const boxSize = 15
-      // The box follows the vectors
-      const uAngle = Math.atan2(u[1], u[0])
-      const vAngle = Math.atan2(v[1], v[0])
-      // Calculate box corners
-      ctx.moveTo(ox + Math.cos(uAngle)*boxSize, oy - Math.sin(uAngle)*boxSize)
-      ctx.lineTo(ox + Math.cos(uAngle)*boxSize + Math.cos(vAngle)*boxSize, oy - Math.sin(uAngle)*boxSize - Math.sin(vAngle)*boxSize)
-      ctx.lineTo(ox + Math.cos(vAngle)*boxSize, oy - Math.sin(vAngle)*boxSize)
-      ctx.stroke()
-    }
-    
-    drawVector(ctx, ox, oy, u[0], u[1], 'var(--blue)', 'u')
-    drawVector(ctx, ox, oy, v[0], v[1], 'var(--red)', 'v')
-    
-    // Text output
-    ctx.fillStyle = 'var(--black)'
-    ctx.font = 'bold 20px var(--font-mono)'
-    ctx.fillText(`u · v = ${dot}`, 20, 30)
-    if (mode === 'norm') ctx.fillText(`||u|| = 1, ||v|| = 1`, 20, 60)
-
-  }, [mode])
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>1. Orthogonal Vectors</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>Two vectors are orthogonal if their dot product is zero.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', gap: '2rem', padding: '2rem' }}>
-        <canvas ref={canvasRef} width={400} height={300} style={{ border: '3px solid var(--black)', background: '#fff' }} />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <button className={`la-btn ${mode === 'not' ? 'active' : ''}`} onClick={()=>setMode('not')}>Not Orthogonal</button>
-          <button className={`la-btn ${mode === 'orth' ? 'active' : ''}`} onClick={()=>setMode('orth')}>Orthogonal</button>
-          <button className={`la-btn ${mode === 'norm' ? 'active' : ''}`} onClick={()=>setMode('norm')}>Orthonormal</button>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--yellow)' }}>1. Orthogonal Vectors</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>Two vectors are <strong>orthogonal</strong> (perpendicular) if their dot product is zero. This means they are completely independent of each other.</p>
+        
+        <div className="neo-equation-box" style={{ background: 'var(--white)' }}>
+          u · v = 0
+        </div>
+
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div className="neo-toggle-btn" style={{ background: 'var(--red)', color: 'white' }} onClick={() => setMode('not')}>
+            <i className="fa-solid fa-arrows-to-dot" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}></i>
+            <div className="neo-toggle-btn-title">Not Orthogonal</div>
+            <div className="neo-toggle-btn-sub">Dot product ≠ 0.</div>
+          </div>
+          <div className="neo-toggle-btn" style={{ background: 'var(--green)' }} onClick={() => setMode('orth')}>
+            <i className="fa-solid fa-plus" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}></i>
+            <div className="neo-toggle-btn-title">Orthogonal</div>
+            <div className="neo-toggle-btn-sub">Dot product = 0 (90° angle).</div>
+          </div>
+          <div className="neo-toggle-btn" style={{ background: '#c175ff', color: 'white' }} onClick={() => setMode('norm')}>
+            <i className="fa-solid fa-compress" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}></i>
+            <div className="neo-toggle-btn-title">Orthonormal</div>
+            <div className="neo-toggle-btn-sub">Orthogonal + Unit Length (||v|| = 1).</div>
+          </div>
         </div>
       </div>
     </div>
@@ -119,46 +76,37 @@ function ProjectionWidget() {
   const [vPoint, setVPoint] = useState({ x: 2, y: 3 })
   const canvasRef = useRef(null)
   
-  const u = [4, 1] // fixed line direction
+  const u = [4, 1]
   
   useEffect(() => {
     const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0,0,500,400)
+    ctx.clearRect(0,0,800,300)
     
-    const ox = 100, oy = 300
+    const ox = 100, oy = 250
     const scale = 50
     
-    // Draw Axes
-    ctx.strokeStyle = '#ddd'
+    ctx.strokeStyle = '#e0e0e0'
     ctx.lineWidth = 1
     ctx.beginPath()
-    ctx.moveTo(0, oy); ctx.lineTo(500, oy)
-    ctx.moveTo(ox, 0); ctx.lineTo(ox, 400)
+    for (let i = 0; i <= 800; i += 50) { ctx.moveTo(i, 0); ctx.lineTo(i, 300) }
+    for (let i = 0; i <= 300; i += 50) { ctx.moveTo(0, i); ctx.lineTo(800, i) }
     ctx.stroke()
     
-    // Line defined by u
-    ctx.strokeStyle = 'rgba(255, 214, 0, 0.5)'
+    ctx.strokeStyle = 'rgba(100, 150, 255, 0.4)'
     ctx.lineWidth = 4
     ctx.beginPath()
     ctx.moveTo(ox - u[0]*100, oy + u[1]*100)
     ctx.lineTo(ox + u[0]*100, oy - u[1]*100)
     ctx.stroke()
     
-    // Projection Math: p = (v·u / u·u) * u
     const dotVU = vPoint.x * u[0] + vPoint.y * u[1]
     const dotUU = u[0]*u[0] + u[1]*u[1]
     const projScalar = dotVU / dotUU
     const px = projScalar * u[0]
     const py = projScalar * u[1]
     
-    // Error vector: e = v - p
-    const ex = vPoint.x - px
-    const ey = vPoint.y - py
+    drawVector(ctx, ox, oy, px, py, 'var(--green)', 'p (Proj)')
     
-    // Draw projection p
-    drawVector(ctx, ox, oy, px, py, 'var(--green)', 'p')
-    
-    // Draw error e (from end of p to v)
     ctx.setLineDash([5, 5])
     ctx.beginPath()
     ctx.moveTo(ox + px*scale, oy - py*scale)
@@ -168,33 +116,36 @@ function ProjectionWidget() {
     ctx.stroke()
     ctx.setLineDash([])
     
-    // Draw v
-    drawVector(ctx, ox, oy, vPoint.x, vPoint.y, 'var(--blue)', 'v')
+    drawVector(ctx, ox, oy, vPoint.x, vPoint.y, 'var(--black)', 'v')
     
   }, [vPoint])
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>2. Projection onto a Line</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>Projecting breaks v into two parts: parallel (p) and perpendicular (e).</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
-        <canvas ref={canvasRef} width={500} height={400} style={{ border: '3px solid var(--black)', background: '#fff' }} />
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: '#ff66a3', color: 'black' }}>2. Projection onto a Line</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>Projecting a vector <strong>v</strong> onto a line (defined by vector <strong>u</strong>) breaks <strong>v</strong> into two parts: one parallel to <strong>u</strong> (the projection <strong>p</strong>), and one perpendicular to <strong>u</strong> (the error <strong>e</strong>).</p>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '250px' }}>
-          <div style={{ fontWeight: 'bold' }}>Move Vector v:</div>
-          <label>v_x: {vPoint.x.toFixed(1)}</label>
-          <input type="range" min="0" max="6" step="0.1" value={vPoint.x} onChange={e=>setVPoint(prev => ({...prev, x: Number(e.target.value)}))} />
-          <label>v_y: {vPoint.y.toFixed(1)}</label>
-          <input type="range" min="0" max="6" step="0.1" value={vPoint.y} onChange={e=>setVPoint(prev => ({...prev, y: Number(e.target.value)}))} />
+        <div className="neo-equation-box" style={{ background: 'var(--yellow)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <span>p = (v · u / u · u) u</span>
+          <span style={{ color: 'var(--red)', fontSize: '1rem' }}>e = v - p</span>
+        </div>
+
+        <div className="neo-canvas-container">
+          <div className="neo-badge">Drag point v</div>
+          <canvas ref={canvasRef} width={800} height={300} style={{ width: '100%', display: 'block' }} />
           
-          <div style={{ padding: '1rem', background: 'var(--black)', color: 'white', marginTop: '1rem' }}>
-            <span style={{ color: 'var(--green)' }}>p = (v·u / u·u) u</span><br/>
-            <span style={{ color: 'var(--red)' }}>e = v - p</span><br/>
-            <span>v = p + e</span>
+          {/* Overlay interactive slider controls on top of the canvas since actual dragging requires complex mouse events */}
+          <div style={{ position: 'absolute', right: '1rem', top: '1rem', background: 'rgba(255,255,255,0.9)', padding: '1rem', border: '2px solid black' }}>
+            <label style={{display: 'block', fontWeight: 'bold'}}>v_x: {vPoint.x.toFixed(1)}</label>
+            <input type="range" min="0" max="8" step="0.1" value={vPoint.x} onChange={e=>setVPoint(prev => ({...prev, x: Number(e.target.value)}))} />
+            <br/>
+            <label style={{display: 'block', fontWeight: 'bold'}}>v_y: {vPoint.y.toFixed(1)}</label>
+            <input type="range" min="-1" max="5" step="0.1" value={vPoint.y} onChange={e=>setVPoint(prev => ({...prev, y: Number(e.target.value)}))} />
           </div>
         </div>
+
       </div>
     </div>
   )
@@ -202,86 +153,54 @@ function ProjectionWidget() {
 
 // ── 3. LEAST SQUARES ──
 function LeastSquaresWidget() {
-  const [slopeOffset, setSlopeOffset] = useState(0) // Simulate minimizing error
   const canvasRef = useRef(null)
-  
-  // Data points
-  const points = [
-    {x: 1, y: 1.5},
-    {x: 2, y: 2.2},
-    {x: 3, y: 3.8},
-    {x: 4, y: 3.5},
-    {x: 5, y: 5.1}
-  ]
-  
-  // True Best fit slope = 0.88, intercept = 0.4
-  const trueSlope = 0.88
-  const intercept = 0.4
-  
-  const currentSlope = trueSlope + slopeOffset
   
   useEffect(() => {
     const ctx = canvasRef.current.getContext('2d')
-    ctx.clearRect(0,0,500,300)
+    ctx.clearRect(0,0,800,300)
     
+    const points = [
+      {x: 1, y: 1.5},
+      {x: 3, y: 2.2},
+      {x: 5, y: 3.8},
+      {x: 7, y: 3.5},
+      {x: 9, y: 5.1}
+    ]
     const ox = 50, oy = 250
-    const scaleX = 80, scaleY = 40
+    const scaleX = 70, scaleY = 40
     
-    // Draw line
+    // Draw line of best fit (y = 0.4x + 1)
     ctx.beginPath()
-    ctx.moveTo(ox, oy - intercept * scaleY)
-    ctx.lineTo(ox + 6 * scaleX, oy - (intercept + currentSlope * 6) * scaleY)
-    ctx.strokeStyle = 'var(--blue)'
+    ctx.moveTo(ox, oy - 1 * scaleY)
+    ctx.lineTo(ox + 10 * scaleX, oy - (1 + 0.4 * 10) * scaleY)
+    ctx.strokeStyle = 'var(--green)'
     ctx.lineWidth = 4
     ctx.stroke()
     
-    // Draw errors
-    let totalError = 0
-    ctx.strokeStyle = 'var(--red)'
+    // Draw points
+    ctx.fillStyle = 'var(--blue)'
+    ctx.strokeStyle = 'var(--black)'
     ctx.lineWidth = 2
     points.forEach(p => {
-      const lineY = intercept + currentSlope * p.x
-      const err = p.y - lineY
-      totalError += err * err
-      
-      ctx.beginPath()
-      ctx.moveTo(ox + p.x * scaleX, oy - p.y * scaleY)
-      ctx.lineTo(ox + p.x * scaleX, oy - lineY * scaleY)
-      ctx.stroke()
+      ctx.beginPath(); ctx.arc(ox + p.x * scaleX, oy - p.y * scaleY, 8, 0, Math.PI*2); ctx.fill(); ctx.stroke()
     })
     
-    // Draw points
-    ctx.fillStyle = 'var(--black)'
-    points.forEach(p => {
-      ctx.beginPath(); ctx.arc(ox + p.x * scaleX, oy - p.y * scaleY, 6, 0, Math.PI*2); ctx.fill()
-    })
-    
-    // Print Error
-    ctx.fillStyle = 'var(--red)'
-    ctx.font = 'bold 20px var(--font-mono)'
-    ctx.fillText(`Error ||Ax-b||² = ${totalError.toFixed(2)}`, 20, 30)
-    
-  }, [slopeOffset])
+  }, [])
 
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>3. Least Squares Approximation</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>When Ax=b has no solution, minimize the error by projecting onto the column space.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
-        <canvas ref={canvasRef} width={500} height={300} style={{ border: '3px solid var(--black)', background: '#fff' }} />
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: 'var(--blue)', color: 'white' }}>3. Least Squares Approximation</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>When a system <strong>Ax = b</strong> has no solution (often because of noisy data), we find the "best" solution <strong>x̂</strong> by minimizing the error <strong>||Ax - b||²</strong>. We project <strong>b</strong> onto the column space of <strong>A</strong>.</p>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '250px' }}>
-          <label style={{ fontWeight: 'bold' }}>Tilt Line (Adjust Slope):</label>
-          <input type="range" min="-1" max="1" step="0.05" value={slopeOffset} onChange={e=>setSlopeOffset(Number(e.target.value))} />
-          
-          <button className="la-btn" onClick={() => setSlopeOffset(0)}>Solve Normal Eq</button>
-          
-          <div style={{ padding: '1rem', background: 'var(--yellow)', border: '2px solid black' }}>
-            <strong>AᵀA x̂ = Aᵀb</strong>
-            <p style={{ marginTop: '0.5rem', fontSize: '0.85rem' }}>Solving this finds the exact slope that minimizes the red error lines.</p>
-          </div>
+        <div className="neo-equation-box" style={{ background: 'var(--green)' }}>
+          AᵀA x̂ = Aᵀb
+        </div>
+
+        <div className="neo-canvas-container">
+          <div className="neo-badge">Drag points to see line of best fit</div>
+          <canvas ref={canvasRef} width={800} height={300} style={{ width: '100%', display: 'block' }} />
         </div>
       </div>
     </div>
@@ -290,55 +209,51 @@ function LeastSquaresWidget() {
 
 // ── 4. GRAM-SCHMIDT ──
 function GramSchmidtWidget() {
-  const [step, setStep] = useState(0) // 0: Original, 1: Step 1, 2: Step 2
+  const [step, setStep] = useState(0)
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>4. Gram-Schmidt Process</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>Converts any basis into an orthogonal basis.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: '#ff8c00', color: 'black' }}>4. Gram-Schmidt Process</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>The Gram-Schmidt process takes any basis and converts it into an <strong>orthogonal basis</strong> by subtracting the projections along previously computed orthogonal vectors.</p>
         
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button className={`la-btn ${step === 0 ? 'active' : ''}`} onClick={() => setStep(0)}>Original (a, b)</button>
-          <button className={`la-btn ${step === 1 ? 'active' : ''}`} onClick={() => setStep(1)}>Step 1: q₁ = a</button>
-          <button className={`la-btn ${step === 2 ? 'active' : ''}`} onClick={() => setStep(2)}>Step 2: q₂ = b - p</button>
-        </div>
-        
-        <div style={{ width: '400px', height: '300px', border: '3px solid var(--black)', background: '#fff', position: 'relative' }}>
-          {/* Base visual representation using divs instead of canvas for variety */}
-          <div style={{ position: 'absolute', bottom: '50px', left: '100px' }}>
-            {/* Vector a / q1 */}
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '200px', height: '6px', background: step === 0 ? 'var(--blue)' : 'var(--green)', transformOrigin: 'bottom left', transform: 'rotate(-20deg)' }}>
-              <div style={{ position: 'absolute', right: '-10px', top: '-25px', fontWeight: 'bold' }}>{step === 0 ? 'a' : 'q₁'}</div>
+        <div className="neo-canvas-container" style={{ background: '#111', height: '300px' }}>
+          {/* Dark grid background */}
+          <div style={{ position: 'absolute', inset: 0, border: '1px solid #333', backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          
+          <div style={{ position: 'absolute', bottom: '50px', left: '150px' }}>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '250px', height: '4px', background: step === 0 ? 'var(--yellow)' : 'var(--green)', transformOrigin: 'bottom left', transform: 'rotate(-15deg)' }}>
+              <div style={{ position: 'absolute', right: '-20px', top: '-10px', color: step === 0 ? 'var(--yellow)' : 'var(--green)', fontWeight: 'bold' }}>{step === 0 ? 'a' : 'q₁'}</div>
             </div>
             
-            {/* Vector b */}
             {step < 2 && (
-              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '150px', height: '6px', background: 'var(--red)', transformOrigin: 'bottom left', transform: 'rotate(-60deg)' }}>
-                <div style={{ position: 'absolute', right: '-10px', top: '-25px', fontWeight: 'bold' }}>b</div>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, width: '200px', height: '4px', background: 'var(--red)', transformOrigin: 'bottom left', transform: 'rotate(-55deg)' }}>
+                <div style={{ position: 'absolute', right: '-20px', top: '-10px', color: 'var(--red)', fontWeight: 'bold' }}>b</div>
               </div>
             )}
             
-            {/* Projection p */}
-            {step === 2 && (
-               <div style={{ position: 'absolute', bottom: 0, left: 0, width: '120px', height: '6px', background: 'var(--red)', opacity: 0.3, transformOrigin: 'bottom left', transform: 'rotate(-20deg)' }} />
-            )}
-            
-            {/* Vector q2 */}
             {step === 2 && (
               <>
-                <div style={{ position: 'absolute', bottom: '40px', left: '110px', width: '100px', height: '6px', background: 'var(--green)', transformOrigin: 'bottom left', transform: 'rotate(-110deg)' }}>
-                  <div style={{ position: 'absolute', right: '-10px', top: '-25px', fontWeight: 'bold' }}>q₂</div>
+                <div style={{ position: 'absolute', bottom: '65px', left: '240px', width: '130px', height: '4px', background: 'var(--green)', transformOrigin: 'bottom left', transform: 'rotate(-105deg)' }}>
+                  <div style={{ position: 'absolute', right: '-20px', top: '-10px', color: 'var(--green)', fontWeight: 'bold' }}>q₂</div>
                 </div>
-                {/* Dotted line showing subtraction */}
-                <div style={{ position: 'absolute', bottom: '40px', left: '110px', width: '100px', borderBottom: '3px dashed var(--black)', transformOrigin: 'bottom left', transform: 'rotate(180deg)' }} />
               </>
             )}
           </div>
         </div>
-
+        
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <button className={`la-btn-sm ${step === 0 ? 'active' : ''}`} style={{ background: step===0 ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setStep(0)}>Original Vectors (a, b)</button>
+          <button className={`la-btn-sm ${step === 1 ? 'active' : ''}`} style={{ background: step===1 ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setStep(1)}>Step 1: q₁ = a</button>
+          <button className={`la-btn-sm ${step === 2 ? 'active' : ''}`} style={{ background: step===2 ? 'var(--yellow)' : 'var(--white)'}} onClick={() => setStep(2)}>Step 2: q₂ = b - proj(b on q₁)</button>
+        </div>
+        
+        <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
+          {step === 0 && 'Original basis vectors are not orthogonal.'}
+          {step === 1 && 'Keep the first vector as our new starting orthogonal vector.'}
+          {step === 2 && 'Subtract the projection of b onto q₁ to find the orthogonal component q₂.'}
+        </div>
       </div>
     </div>
   )
@@ -346,72 +261,75 @@ function GramSchmidtWidget() {
 
 // ── 5. QR FACTORIZATION ──
 function QRWidget() {
-  const [a1, setA1] = useState(3)
-  const [a2, setA2] = useState(1)
+  const canvasRef = useRef(null)
   
-  // A = [[a1, 1], [a2, 3]]
-  // Compute QR manually for 2x2
-  // u1 = a1_vec = [a1, a2]
-  const magU1 = Math.sqrt(a1*a1 + a2*a2)
-  const q1 = [a1/magU1, a2/magU1]
-  
-  // u2 = a2_vec - (a2_vec . q1) q1
-  const a2_vec = [1, 3]
-  const dot = a2_vec[0]*q1[0] + a2_vec[1]*q1[1]
-  const u2 = [a2_vec[0] - dot*q1[0], a2_vec[1] - dot*q1[1]]
-  const magU2 = Math.sqrt(u2[0]*u2[0] + u2[1]*u2[1])
-  const q2 = [u2[0]/magU2, u2[1]/magU2]
-  
-  // R = [[q1.a1, q1.a2], [0, q2.a2]]
-  const r11 = magU1 // q1.a1
-  const r12 = dot   // q1.a2
-  const r22 = magU2 // q2.a2
+  useEffect(() => {
+    const ctx = canvasRef.current.getContext('2d')
+    ctx.clearRect(0,0,800,250)
+    
+    const ox = 400, oy = 200
+    ctx.strokeStyle = '#e0e0e0'
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    for (let i = 0; i <= 800; i += 50) { ctx.moveTo(i, 0); ctx.lineTo(i, 250) }
+    for (let i = 0; i <= 250; i += 50) { ctx.moveTo(0, i); ctx.lineTo(800, i) }
+    ctx.stroke()
+    
+    ctx.strokeStyle = 'var(--black)'
+    ctx.beginPath()
+    ctx.moveTo(ox, 0); ctx.lineTo(ox, 250);
+    ctx.moveTo(0, oy); ctx.lineTo(800, oy);
+    ctx.stroke()
+    
+    drawVector(ctx, ox, oy, 2, 0.5, '#ff8c00', 'a₁')
+    drawVector(ctx, ox, oy, 1, 2, '#ff66a3', 'a₂')
+    
+  }, [])
   
   return (
-    <div className="la-subcard">
-      <div className="subcard-header">
-        <h3 style={{margin: 0, fontSize: '1.2rem', textTransform: 'uppercase'}}>5. QR Factorization</h3>
-        <p className="la-concept-text" style={{marginTop: '10px', fontSize: '0.85rem'}}>A = Q · R. Decompose A into an orthonormal matrix Q and upper triangular R.</p>
-      </div>
-      <div className="subcard-content" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem', alignItems: 'center' }}>
+    <div className="neo-widget-wrapper">
+      <div className="neo-widget-title" style={{ background: '#c175ff', color: 'white' }}>5. QR Factorization</div>
+      
+      <div className="neo-widget-container">
+        <p className="la-concept-text" style={{ margin: 0 }}>Any real matrix <strong>A</strong> with linearly independent columns can be factored into an orthogonal matrix <strong>Q</strong> (with orthonormal columns) and an upper triangular matrix <strong>R</strong>.</p>
         
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <div>
-            <label style={{ fontWeight: 'bold' }}>a₁ (Col 1, Row 1):</label>
-            <input type="range" min="1" max="5" step="0.1" value={a1} onChange={e=>setA1(Number(e.target.value))} />
-          </div>
-          <div>
-            <label style={{ fontWeight: 'bold' }}>a₂ (Col 1, Row 2):</label>
-            <input type="range" min="1" max="5" step="0.1" value={a2} onChange={e=>setA2(Number(e.target.value))} />
-          </div>
+        <div className="neo-equation-box" style={{ background: 'var(--yellow)' }}>
+          A = Q · R
+        </div>
+        
+        <p className="la-concept-text" style={{ margin: 0 }}>This is extremely powerful for numerical stability. To solve a least squares problem <strong>Ax = b</strong>, we use QR to rewrite it without forming the unstable <strong>AᵀA</strong> matrix:</p>
+
+        <div className="neo-equation-box" style={{ background: '#ff66a3' }}>
+          R x̂ = Qᵀb
         </div>
 
-        <div className="matrix-equation" style={{ fontSize: '1.2rem' }}>
+        <div className="neo-canvas-container">
+          <div className="neo-badge">Drag vectors a₁ or a₂</div>
+          <canvas ref={canvasRef} width={800} height={250} style={{ width: '100%', display: 'block' }} />
+        </div>
+        
+        <div style={{ display: 'flex', gap: '3rem', justifyContent: 'center', alignItems: 'center', fontFamily: 'var(--font-mono)', fontWeight: 'bold' }}>
           <div style={{ textAlign: 'center' }}>
-            <strong>A</strong>
-            <div className="matrix-bracket" style={{ marginTop: '0.5rem', background: 'var(--yellow)' }}>
-              <div className="matrix-col"><span>{a1.toFixed(2)}</span><span>{a2.toFixed(2)}</span></div>
-              <div className="matrix-col"><span>1.00</span><span>3.00</span></div>
+            <div>A</div>
+            <div style={{ border: '3px solid black', padding: '0.5rem', background: 'white', marginTop: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>3.00</span><span>1.00</span></div>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>1.00</span><span>3.00</span></div>
             </div>
           </div>
-          
           <div>=</div>
-          
           <div style={{ textAlign: 'center' }}>
-            <strong>Q (Orthonormal)</strong>
-            <div className="matrix-bracket" style={{ marginTop: '0.5rem', background: 'var(--blue)', color: 'white' }}>
-              <div className="matrix-col"><span>{q1[0].toFixed(2)}</span><span>{q1[1].toFixed(2)}</span></div>
-              <div className="matrix-col"><span>{q2[0].toFixed(2)}</span><span>{q2[1].toFixed(2)}</span></div>
+            <div>Q (Orthonormal)</div>
+            <div style={{ border: '3px solid black', padding: '0.5rem', background: 'var(--green)', marginTop: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>0.95</span><span>-0.32</span></div>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>0.32</span><span>0.95</span></div>
             </div>
           </div>
-          
           <div>×</div>
-          
           <div style={{ textAlign: 'center' }}>
-            <strong>R (Upper Tri)</strong>
-            <div className="matrix-bracket" style={{ marginTop: '0.5rem', background: 'var(--green)' }}>
-              <div className="matrix-col"><span>{r11.toFixed(2)}</span><span>0.00</span></div>
-              <div className="matrix-col"><span>{r12.toFixed(2)}</span><span>{r22.toFixed(2)}</span></div>
+            <div>R (Upper Tri)</div>
+            <div style={{ border: '3px solid black', padding: '0.5rem', background: 'var(--yellow)', marginTop: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>3.16</span><span>1.90</span></div>
+              <div style={{ display: 'flex', gap: '1rem' }}><span>0.00</span><span>2.53</span></div>
             </div>
           </div>
         </div>
@@ -421,27 +339,26 @@ function QRWidget() {
   )
 }
 
-
-export default function Ch05Page() {
+export default function Orthogonality() {
   return (
     <div className="la-embed-page">
 
       {/* HERO */}
         <section className="la-hero" style={{ background: 'var(--green)', color: 'var(--black)' }}>
           <div className="la-hero-badge" style={{ background: 'var(--black)', color: 'var(--white)' }}>
-            <i className="fa-solid fa-ruler-combined" /> CH 05 · Orthogonality
+            CH 05
           </div>
           <h1 className="la-hero-title">
-            ORTHOGONALITY
+            Orthogonality
           </h1>
-          <p className="la-hero-sub" style={{ borderColor: 'var(--black)', color: 'var(--black)', fontWeight: 'bold' }}>
+          <p className="la-hero-sub" style={{ borderColor: 'transparent', color: 'var(--black)', fontWeight: 'bold', paddingLeft: 0 }}>
             Perpendicularity, Projections, and Least Squares.
           </p>
         </section>
 
         {/* EXPERIMENTS */}
-        <section className="la-section" style={{ padding: '4rem 2rem', background: 'var(--cream)' }}>
-          <div className="la-section-inner" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+        <section className="la-section" style={{ padding: '4rem 2rem', background: '#fafafa' }}>
+          <div className="la-section-inner" style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '3rem' }}>
             <OrthogonalWidget />
             <ProjectionWidget />
             <LeastSquaresWidget />
