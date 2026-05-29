@@ -41,11 +41,7 @@
   letter-spacing: 1px;
   border: 2px solid transparent;
   transition: all 0.15s ease;
-}
-.nav-links a:hover {
-  background: var(--black);
-  color: var(--yellow);
-}
+}/* hover removed */
 .nav-mobile-btn {
   display: none;
   background: var(--black);
@@ -145,20 +141,17 @@
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   background: none;
-}
-.btn:hover { transform: translate(-3px, -3px); }
+}/* hover removed */
 .btn-primary {
   background: var(--black);
   color: var(--yellow);
   box-shadow: var(--shadow);
-}
-.btn-primary:hover { box-shadow: var(--shadow-lg); }
+}/* hover removed */
 .btn-secondary {
   background: var(--white);
   color: var(--black);
   box-shadow: var(--shadow);
-}
-.btn-secondary:hover { box-shadow: var(--shadow-lg); }
+}/* hover removed */
 
 .hero-right { display: grid; grid-template-rows: 1fr auto; }
 .hero-photo-zone {
@@ -248,8 +241,7 @@
   cursor: pointer;
   box-shadow: 3px 3px 0 var(--black);
   transition: all 0.15s;
-}
-.photo-upload-btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--black); }
+}/* hover removed */
 
 .hero-stats {
   display: grid;
@@ -263,8 +255,7 @@
   justify-content: center;
   transition: background 0.2s;
   cursor: default;
-}
-.stat-box:hover { background: var(--yellow); }
+}/* hover removed */
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
@@ -370,8 +361,7 @@
   box-shadow: 3px 3px 0 var(--black);
   transition: all 0.15s;
   cursor: default;
-}
-.interest-chip:hover { background: var(--yellow); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--black); }
+}/* hover removed */
 .personal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -382,12 +372,7 @@
   padding: 1rem 1.2rem;
   box-shadow: 4px 4px 0 var(--black);
   transition: all 0.2s;
-}
-.personal-item:hover {
-  background: var(--yellow);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--black);
-}
+}/* hover removed */
 .personal-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -462,9 +447,7 @@
   color: var(--yellow);
   -webkit-text-stroke: 1px var(--black);
 }
-.star.empty { color: transparent; -webkit-text-stroke: 1.5px currentColor; opacity: 0.4; }
-.skill-card:hover .star { color: var(--yellow); -webkit-text-stroke: 1px var(--black); }
-.skill-card:hover .star.empty { color: transparent; -webkit-text-stroke: 1.5px var(--yellow); }
+.star.empty { color: transparent; -webkit-text-stroke: 1.5px currentColor; opacity: 0.4; }/* hover removed *//* hover removed */
 
 /* ============================
    SECTION TAG / LINK
@@ -494,8 +477,7 @@
   border: 2px solid var(--black);
   box-shadow: 3px 3px 0 var(--black);
   transition: all 0.15s;
-}
-.section-link:hover { background: var(--black); color: var(--yellow); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--black); }
+}/* hover removed */
 
 /* ============================
    PROJECTS
@@ -529,8 +511,7 @@
   overflow: hidden;
   transition: all 0.2s ease;
 }
-.project-card:nth-child(3n) { border-right: none; }
-.project-card:hover { background: var(--black); color: var(--white); }
+.project-card:nth-child(3n) { border-right: none; }/* hover removed */
 .project-featured { border-top: 4px solid var(--yellow); }
 .project-badge {
   position: absolute;
@@ -543,10 +524,7 @@
   padding: 3px 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-.project-card:hover .project-num { background: var(--yellow); color: var(--black); }
-.project-card:hover .project-type { border-color: var(--white); }
-.project-card:hover .project-link { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+}/* hover removed *//* hover removed *//* hover removed */
 .project-num {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -596,8 +574,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.2s;
-}
-.project-link:hover { background: var(--black); color: var(--yellow); }
+}/* hover removed */
 
 /* ============================
    EXPERIENCE
@@ -672,8 +649,7 @@
   transition: all 0.2s;
   cursor: default;
 }
-.edu-card:last-child { border-right: none; }
-.edu-card:hover { background: var(--yellow); }
+.edu-card:last-child { border-right: none; }/* hover removed */
 .edu-year {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -734,8 +710,7 @@
   gap: 1.5rem;
   align-items: flex-start;
   transition: all 0.2s;
-}
-.ach-card:hover { border-color: var(--yellow); background: #111; }
+}/* hover removed */
 .ach-card-gold {
   border-color: #FFD600;
   border-width: 2px;
@@ -755,8 +730,7 @@
   padding: 3px 8px;
   letter-spacing: 1px;
 }
-.ach-card-gold .ach-title { color: var(--yellow); }
-.ach-card-gold:hover { border-color: var(--yellow); background: #221c00; }
+.ach-card-gold .ach-title { color: var(--yellow); }/* hover removed */
 .ach-icon { font-size: 2rem; flex-shrink: 0; }
 .ach-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; text-transform: uppercase; }
 .ach-desc { font-size: 0.85rem; opacity: 0.7; line-height: 1.6; }
@@ -772,12 +746,7 @@
   box-shadow: var(--shadow);
   transition: all 0.2s;
   position: relative;
-}
-.cert-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--shadow-lg);
-  background: var(--yellow);
-}
+}/* hover removed */
 .cert-status {
   position: absolute;
   top: 12px; right: 12px;
@@ -841,13 +810,7 @@
   font-size: 0.83rem;
   font-weight: 700;
   transition: all 0.2s;
-}
-.contact-item:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--shadow-lg);
-  background: var(--black);
-  color: var(--yellow);
-}
+}/* hover removed */
 
 /* ============================
    GITHUB SECTION
@@ -864,10 +827,8 @@
   transition: background 0.2s;
   cursor: default;
 }
-.github-stat-card:last-child { border-right: none; }
-.github-stat-card:hover { background: var(--yellow); }
-.github-stat-highlight { background: var(--black); color: var(--yellow); }
-.github-stat-highlight:hover { background: #111; }
+.github-stat-card:last-child { border-right: none; }/* hover removed */
+.github-stat-highlight { background: var(--black); color: var(--yellow); }/* hover removed */
 .github-stat-num {
   font-size: 2.2rem;
   font-weight: 700;
@@ -905,8 +866,7 @@
   box-shadow: 4px 4px 0 var(--black);
   background: var(--white);
   transition: all 0.15s;
-}
-.github-badge:hover { background: var(--yellow); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--black); }
+}/* hover removed */
 .github-badge-icon { font-size: 1.5rem; }
 .github-badge-name { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .github-repos-label {
@@ -931,10 +891,7 @@
   transition: all 0.2s;
 }
 .github-repo-card:nth-child(3n) { border-right: none; }
-.github-repo-card:nth-child(n+4) { border-top: var(--border); }
-.github-repo-card:hover { background: var(--black); color: var(--white); }
-.github-repo-card:hover .repo-name { color: var(--yellow); }
-.github-repo-card:hover .repo-visibility.pub { background: var(--yellow); color: var(--black); border-color: var(--yellow); }
+.github-repo-card:nth-child(n+4) { border-top: var(--border); }/* hover removed *//* hover removed *//* hover removed */
 .repo-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .repo-name {
   font-family: var(--font-mono);
@@ -972,8 +929,7 @@
   padding: 1.2rem 4rem;
   border-bottom: 1.5px solid #e0d8c8;
   transition: background 0.2s;
-}
-.activity-item:hover { background: #ede7d8; }
+}/* hover removed */
 .activity-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 .activity-repo { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; }
 .activity-meta { font-family: var(--font-mono); font-size: 0.72rem; opacity: 0.6; margin-top: 3px; }
@@ -1023,12 +979,7 @@
   gap: 1rem;
   align-items: flex-start;
   transition: all 0.2s;
-}
-.extra-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--shadow-lg);
-  background: var(--yellow);
-}
+}/* hover removed */
 .extra-card i { font-size: 1.5rem; flex-shrink: 0; margin-top: 3px; }
 .extra-card-title { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
 .extra-card-desc { font-size: 0.87rem; line-height: 1.6; }
@@ -1037,10 +988,7 @@
   padding: 1.5rem !important;
   text-decoration: none !important;
   color: inherit !important;
-}
-.hero-contact-box:hover {
-  background: var(--yellow);
-}
+}/* hover removed */
 .hero-contact-box .stat-number {
   font-size: 1.1rem !important;
   display: flex;
@@ -1196,12 +1144,7 @@
   box-shadow: 2px 2px 0 var(--black);
   transition: all 0.1s ease;
   text-align: center;
-}
-.preset-btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--black);
-  background: var(--yellow);
-}
+}/* hover removed */
 .preset-btn.active {
   background: var(--black);
   color: var(--yellow);
@@ -1430,14 +1373,7 @@
 }
 .la-app-card:last-child {
   border-right: none;
-}
-.la-app-card:hover {
-  background: var(--black);
-  color: var(--white);
-}
-.la-app-card:hover .la-app-icon-box {
-  box-shadow: 4px 4px 0 var(--white);
-}
+}/* hover removed *//* hover removed */
 .la-app-icon-box {
   width: 48px; height: 48px;
   display: flex;
@@ -1468,11 +1404,7 @@
   background: var(--black) !important;
   color: var(--yellow) !important;
   border: 2px solid var(--black) !important;
-}
-.nav-highlight:hover {
-  background: var(--yellow) !important;
-  color: var(--black) !important;
-}
+}/* hover removed */
 
 /* Subcard styling for chapter elements */
 .la-subcard {
@@ -1646,8 +1578,7 @@
   cursor: pointer;
   transition: background 0.15s;
   flex-shrink: 0;
-}
-.la-topbar-logo:hover { background: rgba(255,255,255,0.05); }
+}/* hover removed */
 
 .la-topbar-logo-kh {
   font-family: var(--font-mono);
@@ -1696,12 +1627,7 @@
 }
 .la-topbar-link i { font-size: 0.8rem; }
 .la-topbar-link-short { display: block; }
-.la-topbar-link-full { display: none; }
-
-.la-topbar-link:hover {
-  background: rgba(255,255,255,0.07);
-  color: var(--white);
-}
+.la-topbar-link-full { display: none; }/* hover removed */
 .la-topbar-link-active {
   background: var(--yellow) !important;
   color: var(--black) !important;
@@ -1739,11 +1665,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-}
-.la-chapter-nav-btn:hover:not(:disabled) {
-  background: var(--yellow);
-  color: var(--black);
-}
+}/* hover removed */
 .la-chapter-bar-progress {
   display: flex;
   align-items: center;
@@ -1757,8 +1679,7 @@
   border: 2px solid rgba(255,255,255,0.3);
   cursor: pointer;
   transition: all 0.2s;
-}
-.la-progress-dot:hover { background: rgba(255,255,255,0.5); }
+}/* hover removed */
 .la-progress-dot.done { background: rgba(255,214,0,0.5); border-color: var(--yellow); }
 .la-progress-dot.active { background: var(--yellow); border-color: var(--yellow); transform: scale(1.4); }
 
@@ -1968,8 +1889,7 @@
   flex-direction: column;
   gap: 12px;
   transition: transform 0.15s;
-}
-.laemb-eng-card:hover { transform: translateY(-4px); box-shadow: 4px 4px 0 var(--yellow); }
+}/* hover removed */
 .laemb-eng-card i { font-size: 1.5rem; }
 .laemb-eng-card-title { font-family: var(--font-sans); font-weight: 800; font-size: 1.1rem; text-transform: uppercase; }
 .laemb-eng-card-desc { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.5; opacity: 0.8; }
@@ -2029,8 +1949,7 @@
   gap: 0.8rem;
   transition: background 0.15s;
 }
-.la-info-card:nth-child(2n) { border-right: none; }
-.la-info-card:hover { background: var(--yellow); }
+.la-info-card:nth-child(2n) { border-right: none; }/* hover removed */
 .la-info-icon {
   font-size: 2rem;
   line-height: 1;
@@ -2064,11 +1983,7 @@
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
   background: var(--cream);
-}
-.la-chapter-overview-card:hover {
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 var(--black);
-}
+}/* hover removed */
 .la-chov-left {
   width: 100px;
   min-height: 90px;
@@ -2115,8 +2030,7 @@
   font-size: 1.2rem;
   opacity: 0.4;
   flex-shrink: 0;
-}
-.la-chapter-overview-card:hover .la-chov-arrow { opacity: 1; }
+}/* hover removed */
 
 /* ============================
    COMING SOON CARD

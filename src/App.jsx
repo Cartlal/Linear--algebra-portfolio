@@ -722,6 +722,20 @@ function Achievements() {
             <div className="ach-desc">Selected as a member of KLE Technological University's official web and software development team.</div>
           </div>
         </FadeIn>
+        <FadeIn className="ach-card ach-card-gold">
+          <div className="ach-icon">🥇</div>
+          <div>
+            <div className="ach-title">Winner — DTSI Project Expo</div>
+            <div className="ach-desc">Won first place at the DTSI Project Exhibition for developing an innovative <strong>Smart Cradle</strong>, showcasing real-world hardware solutions to industry professionals.</div>
+          </div>
+        </FadeIn>
+        <FadeIn className="ach-card">
+          <div className="ach-icon">🚀</div>
+          <div>
+            <div className="ach-title">Backend Engineer — Asteria Fest</div>
+            <div className="ach-desc">Developed the backend for the Asteria college fest website. Engineered a high-availability registration system with <strong>zero downtime</strong>, successfully processing over <strong>₹33,000</strong> in web registrations.</div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
