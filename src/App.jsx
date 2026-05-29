@@ -10,6 +10,7 @@ import Ch05Page from './Orthogonality'
 import Ch06Page from './Eigenvalues'
 import Ch07Page from './SVD'
 import LabReportPage from './LabReport'
+import AsteriaFest from './AsteriaFest'
 
 /* ──────────────────────────────
    DATA
@@ -59,6 +60,14 @@ const SKILLS = [
 const PROJECTS = [
   {
     num: '#01',
+    title: 'Asteria Fest Website',
+    type: 'React · Neo-Brutalism',
+    desc: 'The official flagship website for Asteria Fest 2025, driving development and cultural spectacles. Features event tracking, ticketing info, and DTSI Project Expo.',
+    link: '#asteria-fest',
+    featured: true,
+  },
+  {
+    num: '#02',
     title: 'VictoryPath AI',
     type: 'React · Node.js · MongoDB · AI',
     desc: 'An intelligent academic analytics platform to detect early student disengagement with AI-powered insights, real-time analytics, and centralized monitoring.',
@@ -722,6 +731,20 @@ function Achievements() {
             <div className="ach-desc">Selected as a member of KLE Technological University's official web and software development team.</div>
           </div>
         </FadeIn>
+        <FadeIn className="ach-card ach-card-gold">
+          <div className="ach-icon">🥇</div>
+          <div>
+            <div className="ach-title">Winner — DTSI Project Expo</div>
+            <div className="ach-desc">Won first place at the DTSI Project Exhibition, showcasing innovative technical projects and real-world solutions to industry professionals.</div>
+          </div>
+        </FadeIn>
+        <FadeIn className="ach-card">
+          <div className="ach-icon">🚀</div>
+          <div>
+            <div className="ach-title">College Fest Development</div>
+            <div className="ach-desc">Drives development and experimental projects during college fests, building real-world solutions under pressure.</div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
@@ -925,7 +948,7 @@ export default function App() {
       // Remove leading slash, e.g. "/data-as-vectors" -> "data-as-vectors"
       const path = window.location.pathname.replace(/^\/+/, '')
       
-      const LA_VIEWS = ['la-home', 'data-as-vectors', 'matrices-as-system-operators', 'solving-linear-systems', 'vector-spaces', 'orthogonality', 'eigenvalues-and-eigenvectors', 'singular-value-decomposition', 'lab-report']
+      const LA_VIEWS = ['la-home', 'data-as-vectors', 'matrices-as-system-operators', 'solving-linear-systems', 'vector-spaces', 'orthogonality', 'eigenvalues-and-eigenvectors', 'singular-value-decomposition', 'lab-report', 'asteria-fest']
       
       if (LA_VIEWS.includes(path)) {
         setView(path)
@@ -949,6 +972,7 @@ export default function App() {
     'eigenvalues-and-eigenvectors': <Ch06Page />,
     'singular-value-decomposition': <Ch07Page />,
     'lab-report': <LabReportPage />,
+    'asteria-fest': <AsteriaFest />
   }
 
   if (LA_PAGES[view]) {

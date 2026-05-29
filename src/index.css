@@ -54,12 +54,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 4px 4px 0px var(--black);
   transition: all 0.1s ease;
   text-transform: uppercase;
-}
-.la-btn:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--black);
-  background: var(--yellow);
-}
+}/* hover removed */
 .la-btn:active {
   transform: translate(4px, 4px);
   box-shadow: 0px 0px 0px var(--black);
@@ -79,12 +74,7 @@ a { text-decoration: none; color: inherit; }
   cursor: pointer;
   box-shadow: 3px 3px 0px var(--black);
   transition: all 0.1s ease;
-}
-.la-btn-sm:hover {
-  background: var(--yellow);
-  transform: translate(1px, 1px);
-  box-shadow: 2px 2px 0px var(--black);
-}
+}/* hover removed */
 
 /* Matrix Inputs */
 .matrix-input {
